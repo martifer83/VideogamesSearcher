@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "marti.com.example.exampleapp"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+    /**
+     *  Type-safe REST client for Android.
+     *
+     *  You should change entity dependencies if you change this lib.
+     *  https://github.com/square/retrofit
+     *  http://www.apache.org/licenses/LICENSE-2.0
+     */
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    /**
+     *  An HTTP+SPDY client for Android and Java applications.
+     *  It is needed for certificate pinning.
+     *
+     *  https://github.com/square/okhttp
+     *  http://www.apache.org/licenses/LICENSE-2.0
+     */
+    compile 'com.squareup.okhttp:okhttp:2.2.0'
+    /**
+     *  View injection.
+     *
+     *  http://jakewharton.github.io/butterknife/
+     *  http://www.apache.org/licenses/LICENSE-2.0
+     */
+    compile 'com.jakewharton:butterknife:7.0.1'
+    /**
+     *  This decorator allows you to easily create section headers for RecyclerViews using a LinearLayoutManager in either vertical or horizontal orientation.
+     *
+     *  https://github.com/timehop/sticky-headers-recyclerview
+     */
+    compile 'com.timehop.stickyheadersrecyclerview:library:0.4.1@aar'
+    /**
+     *  A library to show material design dialogs
+     *
+     *  https://github.com/afollestad/material-dialogs
+     *  https://github.com/afollestad/material-dialogs/blob/master/LICENSE.txt
+     */
+    //compile 'com.afollestad:material-dialogs:0.7.6.0'
+
+    //compile 'com.android.support:percent:23.3.0'
+    compile project(':imageloader')
+    compile project(':pinning')
+}

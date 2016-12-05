@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="48dp"
+    android:layout_height="48dp">
+
+    <ImageView
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:id="@+id/badge_counter"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:maxEms="2"
+        android:ellipsize="end"
+        android:visibility="invisible"
+        android:textSize="@dimen/app_text_size_xsmall"
+        android:textColor="@color/app_white" />
+    <Button
+        android:id="@+id/badge_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"/>
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.axa.amfcore.utils.pinning">
+
+    <!-- PERMISSIONS -->
+    <!--
+        Add here your app permissions and uses permissions,
+        comment for what is the app using each permission.
+    -->
+
+
+    <!-- FEATURES -->
+    <!--
+        Add here your app features,
+        comment for what is the app using each feature.
+        Take care about 'required' or not feature.
+    -->
+
+
+    <!-- SCREENS -->
+    <!--
+        Add here your app support and compatible screens.
+    -->
+
+    <application>
+
+        <!-- ACTIVITIES -->
+        <!--
+            Add here your activities
+        -->
+
+
+        <!-- SERVICES -->
+        <!--
+            Add here your services
+        -->
+
+
+        <!-- RECEIVERS -->
+        <!--
+            Add here your broadcast receivers
+        -->
+
+        <!-- API KEYS -->
+        <!--
+            Add here your api keys,
+            comment for which lib/service is the api.
+        -->
+    </application>
+
+</manifest>
+
+

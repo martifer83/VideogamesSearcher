@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 22
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        abortOnError true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    provided 'com.android.support:support-annotations:22.2.0'
+
+    /**
+     * Needed for secure connections.
+     */
+    compile project (':pinning')
+
+    /*
+     * Powerful and flexible library for loading, caching and displaying images on Android.
+     *
+     * https://github.com/nostra13/Android-Universal-Image-Loader
+     * http://www.apache.org/licenses/LICENSE-2.0
+     */
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+
+    /*
+     * Picasso allows for hassle-free image loading in your application—often in one line of code!
+     *
+     * http://square.github.io/picasso/
+     * http://www.apache.org/licenses/LICENSE-2.0
+     */
+    provided 'com.squareup.picasso:picasso:2.5.2'
+    
+    /*
+     * An HTTP+SPDY client for Android and Java applications.
+     * It is needed for certificate pinning when using retrofit 1.9.0
+     *
+     * https://github.com/square/okhttp
+     * http://www.apache.org/licenses/LICENSE-2.0
+     */
+    provided 'com.squareup.okhttp:okhttp:2.2.0'
+
+}

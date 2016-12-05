@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_main_blue">#007dff</color>
+    <color name="app_secondary_blue">#1a57a3</color>
+    <color name="edittext_background_blue">#3397FF</color>
+    <color name="app_white">#FFFFFF</color>
+    <color name="app_black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="app_red">#e50036</color>
+    <color name="app_secondary_red">#9B0727</color>
+    <color name="app_grey">#10000000</color>
+    <color name="app_grey2">#20000000</color>
+    <color name="app_medium_grey">#CC000000</color>
+    <color name="app_soft_grey">#88000000</color>
+    <color name="ivory_40">#66f1efe8</color>
+    <!--  Balance game colors -->
+    <color name="balance_game_light_blue">#a8d3ff</color>
+    <color name="balance_game_success">#7dbdff</color>
+</resources>

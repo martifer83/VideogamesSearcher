@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="marti.com.exampleApp.view.home.GameDetailsFragment">
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/event_list_image_height"
+        android:adjustViewBounds="false"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/dummy_event_im"/>
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/feedback_send"
+            android:fillViewport="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app_main_blue"
+                android:textSize="@dimen/app_text_size_big"
+                android:textStyle="bold" />
+
+            <!--TextView
+                android:id="@+id/slug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:textColor="@color/app_main_blue"
+                android:textSize="@dimen/app_text_size_medium"
+                android:textStyle="bold" /-->
+
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:textColor="@color/app_main_blue"
+                android:textSize="@dimen/app_text_size_medium"
+                />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/summary"
+                android:layout_toLeftOf="@+id/imageView"
+                android:drawablePadding="5dp"
+                android:textColor="@color/app_secondary_blue"
+                android:textSize="@dimen/app_text_size_medium"/>
+
+            <TextView
+                android:id="@+id/empty_list_genres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/app_text_size_medium"
+                android:visibility="gone" />
+
+            <marti.com.example.exampleapp.view.widget.EmptyRecyclerView
+                android:id="@+id/list_genres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/rating"
+                android:background="@color/app_white"
+                android:choiceMode="singleChoice"
+                android:scrollbars="vertical"/>
+
+            <TextView
+                android:id="@+id/empty_list_releases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/app_text_size_medium"
+                android:visibility="gone" />
+
+            <marti.com.example.exampleapp.view.widget.EmptyRecyclerView
+                android:id="@+id/list_releases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/list_genres"
+                android:background="@color/app_white"
+                android:choiceMode="singleChoice"
+                android:scrollbars="vertical"/>
+
+            <TextView
+                android:id="@+id/empty_list_companies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/app_text_size_medium"
+                android:visibility="gone" />
+
+            <marti.com.example.exampleapp.view.widget.EmptyRecyclerView
+                android:id="@+id/list_companies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/list_releases"
+                android:background="@color/app_white"
+                android:choiceMode="singleChoice"
+                android:scrollbars="vertical"/>
+
+            <TextView
+                android:id="@+id/empty_list_screenshots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/app_text_size_medium"
+                android:visibility="gone"/>
+
+            <marti.com.example.exampleapp.view.widget.EmptyRecyclerView
+                android:id="@+id/list_screenshots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/list_companies"
+                android:background="@color/app_white"
+                android:choiceMode="singleChoice"
+                android:scrollbars="vertical"/>
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

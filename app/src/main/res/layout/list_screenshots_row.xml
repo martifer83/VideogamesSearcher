@@ -1,0 +1,23 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_white"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/screenshot_url_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/event_list_image_height"
+            android:adjustViewBounds="false"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/dummy_event_im"/>
+    </RelativeLayout>
+</LinearLayout>
