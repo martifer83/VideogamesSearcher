@@ -4,6 +4,6 @@
     <string name="backend_url">https://itunes.apple.com/search</string>
     <string name="giantbomb_url">http://www.giantbomb.com/api/</string>
     <string name="giantbomb_api_key">22ecf43dc573a2e400cd5c2e334fbcba6edb8a51</string>
-    <string name="igdb_url">https://www.igdb.com/api/v1/</string>
-    <string name="igdb_api_key">oR58pXGCWWX3YZWHXUnWLIB0tAW0yZU81l4qA7rQor0</string>
+    <string name="igdb_url">https://api-endpoint.igdb.com/</string>
+    <string name="igdb_api_key">149aabb2ae2b580422d84f5a739d3df2</string>
 </resources>

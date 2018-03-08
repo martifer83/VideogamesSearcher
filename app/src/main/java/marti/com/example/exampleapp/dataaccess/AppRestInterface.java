@@ -5,6 +5,7 @@ import marti.com.example.exampleapp.entity.GameResponse;
 import marti.com.example.exampleapp.entity.SongResponse;
 import retrofit.Callback;
 import retrofit.http.GET;
+import retrofit.http.Header;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
@@ -26,13 +27,24 @@ public interface AppRestInterface {
             @Query("filter") String filter,
             Callback<GameResponse> callback
     );
+//  Example: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name&filter[version_parent][not_exists]=1
 
-    @GET("/games/search")
+    @GET("/games/?search={name}&fields=name&filter[version_parent][not_exists]=1") ///games/?search=Halo
+    void getGamesByName(
+            @Path("name") String name,
+            @Header("user-key") String userkey,
+            @Header("Accept") String accept,
+            Callback<GameIgdbResponse> callback
+    );
+
+
+
+   /* @GET("/games/search") ///games/?search=Halo
     void getGamesByName(
             @Query("token") String token,
             @Query("q") String q,
             Callback<GameIgdbResponse> callback
-    );
+    );*/
 
 
     @GET("/games/{id}")
