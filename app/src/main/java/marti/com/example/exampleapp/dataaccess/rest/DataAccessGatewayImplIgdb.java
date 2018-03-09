@@ -3,6 +3,8 @@ package marti.com.example.exampleapp.dataaccess.rest;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
 import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.dataaccess.AppRestInterface;
 import marti.com.example.exampleapp.dataaccess.DataAccessGatewayIgdb;
@@ -50,9 +52,11 @@ public class DataAccessGatewayImplIgdb implements DataAccessGatewayIgdb { // Mus
 
 
     @Override
-    public void getGamesByName(@NonNull DataCallback<GameIgdbResponse> callback, String queryText) {
+    public void getGamesByName(@NonNull DataCallback<List<GameIgdbResponse>> callback, String queryText) {
+    // https://stackoverflow.com/questions/36656827/how-to-parse-list-of-json-objects-surrounded-by-using-retrofit-and-gson
+        String nom = "Fallout";
 
-        getService().getGamesByName("",mContext.getString(R.string.igdb_api_key),"application/json",
+        getService().getGamesByName(nom,"name","1",mContext.getString(R.string.igdb_api_key),"application/json",
                 new RetrofitCallbackImpl<>(new RestCallbackImpl<>(callback)));
     }
 

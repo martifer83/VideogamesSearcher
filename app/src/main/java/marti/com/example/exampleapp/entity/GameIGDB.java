@@ -8,22 +8,9 @@ import android.os.Parcelable;
  */
 public class GameIGDB implements Parcelable {
 
-
-    //simple
     private int id;
     private String name;
-    private String release_date;
-    private String cover;
 
-    // detalied
-
-    private float rating;
-
-    // image - icon_url
-    // platforms - name
-
-
-    // platforms -- abbreviation
 
     public int getId() {
         return id;
@@ -33,11 +20,6 @@ public class GameIGDB implements Parcelable {
         return name;
     }
 
-    public String getCover() {
-        return cover;
-    }
-
-    public String getRelease_date() {return release_date; }
 
     @Override
     public int describeContents() {
@@ -48,9 +30,6 @@ public class GameIGDB implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
-        dest.writeString(this.release_date);
-        dest.writeString(this.cover);
-        dest.writeFloat(this.rating);
     }
 
     public GameIGDB() {
@@ -59,9 +38,7 @@ public class GameIGDB implements Parcelable {
     protected GameIGDB(Parcel in) {
         this.name = in.readString();
         this.id = in.readInt();
-        this.release_date = in.readString();
-        this.cover = in.readString();
-        this.rating = in.readFloat();
+
     }
 
     public static final Parcelable.Creator<Game> CREATOR = new Parcelable.Creator<Game>() {

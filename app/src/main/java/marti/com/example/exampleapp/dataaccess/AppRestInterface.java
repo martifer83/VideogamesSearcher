@@ -1,5 +1,7 @@
 package marti.com.example.exampleapp.dataaccess;
 
+import java.util.List;
+
 import marti.com.example.exampleapp.entity.GameIgdbResponse;
 import marti.com.example.exampleapp.entity.GameResponse;
 import marti.com.example.exampleapp.entity.SongResponse;
@@ -27,14 +29,17 @@ public interface AppRestInterface {
             @Query("filter") String filter,
             Callback<GameResponse> callback
     );
-//  Example: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name&filter[version_parent][not_exists]=1
-
-    @GET("/games/?search={name}&fields=name&filter[version_parent][not_exists]=1") ///games/?search=Halo
+    // Query original: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name&filter[version_parent][not_exists]=1
+    // @GET("/games/&fields=name&filter[version_parent][not_exists]=1") ///games/?search=Halo
+    @GET("/games/")   /// funciona
     void getGamesByName(
-            @Path("name") String name,
+            @Query("search") String nom,
+            @Query("fields") String fields,
+            @Query("filter[version_parent][not_exists]") String filter,
+
             @Header("user-key") String userkey,
             @Header("Accept") String accept,
-            Callback<GameIgdbResponse> callback
+            Callback<List<GameIgdbResponse>> callback
     );
 
 

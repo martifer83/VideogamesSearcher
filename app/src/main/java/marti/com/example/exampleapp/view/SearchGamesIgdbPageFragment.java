@@ -107,7 +107,6 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
         setPresenter(new SearchGamePagePresenter(this));
 
         int id = item.getId();
-        urlCover = item.getCover();
 
         getPresenter().getGamesbyId(Integer.toString(id));
     }
