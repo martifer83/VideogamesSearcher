@@ -27,6 +27,26 @@ public class GameIgdbDetail implements Parcelable {
     private String created_at;
     @SerializedName("summary")
     private String summary;
+    @SerializedName("storyline")
+    private String storyline;
+    @SerializedName("first_release_date")
+    private int first_release_date;
+    @SerializedName("popularity")
+    private float popularity;
+    @SerializedName("time_to_beat")
+    private String time_to_beat;
+
+    /*
+    first_release_date
+    popularity
+    total_rating
+    "time_to_beat": {
+      "hastly": 118482,
+      "normally": 260885,
+      "completely": 515172
+    },
+
+    */
 
    // @SerializedName("release_date")
    // private String release_date;

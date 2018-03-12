@@ -44,11 +44,11 @@ public class SearchGamePagePresenter extends BasePresenter{
 
     public void getGamesbyName(final String queryText) {
         mView.showLoading();
-        GameIgdbUseCases.getGamesByName(mDataAccessGatewayIgdb, new BusinessCallbackImpl<GameIgdbResponse>(mView) {
+        GameIgdbUseCases.getGamesByName(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIGDB>>(mView) {
             @Override
-            public void successUIThread(GameIgdbResponse data) {
+            public void successUIThread(ArrayList<GameIGDB> data) {
                 mView.hideLoading();
-                mView.onGamesListIgdbReceived(builtGamesIGDBList(data));
+                mView.onGamesListIgdbReceived(data);
             }
 
             @Override
@@ -60,11 +60,11 @@ public class SearchGamePagePresenter extends BasePresenter{
 
     public void getGamesbyId(final String queryText) {
        // mView.showLoading();
-        GameIgdbUseCases.getGamesById(mDataAccessGatewayIgdb, new BusinessCallbackImpl<GameIgdbResponse>(mView) {
+        GameIgdbUseCases.getGamesById(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIgdbDetail>>(mView) {
             @Override
-            public void successUIThread(GameIgdbResponse data) {
+            public void successUIThread(ArrayList<GameIgdbDetail> data) {
                 mView.hideLoading();
-                mView.onGameIgdbReceived(builtGameIGDBDetail(data));
+                mView.onGameIgdbReceived(data.get(0)); /// TODO check
 
             }
 
@@ -112,6 +112,8 @@ public class SearchGamePagePresenter extends BasePresenter{
         }
         return games;
     }
+
+
 
     private GameIgdbDetail builtGameIGDBDetail(GameIgdbResponse gameIgdbResponse) {
         return gameIgdbResponse.getMyGame();

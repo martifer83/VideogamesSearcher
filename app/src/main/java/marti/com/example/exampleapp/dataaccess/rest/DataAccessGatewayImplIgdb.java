@@ -3,7 +3,7 @@ package marti.com.example.exampleapp.dataaccess.rest;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.dataaccess.AppRestInterface;
@@ -11,7 +11,8 @@ import marti.com.example.exampleapp.dataaccess.DataAccessGatewayIgdb;
 import marti.com.example.exampleapp.dataaccess.DataCallback;
 import marti.com.example.exampleapp.dataaccess.RestCallbackImpl;
 import marti.com.example.exampleapp.dataaccess.RetrofitCallbackImpl;
-import marti.com.example.exampleapp.entity.GameIgdbResponse;
+import marti.com.example.exampleapp.entity.GameIGDB;
+import marti.com.example.exampleapp.entity.GameIgdbDetail;
 
 /**
  * Created by mferrando on 23/06/16.
@@ -49,23 +50,18 @@ public class DataAccessGatewayImplIgdb implements DataAccessGatewayIgdb { // Mus
         return restService.getService();
     }
 
+    @Override
+    public void getGamesById(@NonNull DataCallback<ArrayList<GameIgdbDetail>> callback, String id) {
 
+        getService().getGamesById(id,
+                new RetrofitCallbackImpl<>(new RestCallbackImpl<>(callback)));
+    }
 
     @Override
-    public void getGamesByName(@NonNull DataCallback<List<GameIgdbResponse>> callback, String queryText) {
-    // https://stackoverflow.com/questions/36656827/how-to-parse-list-of-json-objects-surrounded-by-using-retrofit-and-gson
+    public void getGamesByName(@NonNull DataCallback<ArrayList<GameIGDB>> callback, String Text) {
+        // https://stackoverflow.com/questions/36656827/how-to-parse-list-of-json-objects-surrounded-by-using-retrofit-and-gson
         String nom = "Fallout";
-
-        getService().getGamesByName(nom,"name","1",mContext.getString(R.string.igdb_api_key),"application/json",
+        getService().getGamesByName(Text,"name","1",mContext.getString(R.string.igdb_api_key),"application/json",
                 new RetrofitCallbackImpl<>(new RestCallbackImpl<>(callback)));
     }
-
-    @Override
-    public void getGamesById(@NonNull DataCallback<GameIgdbResponse> callback,String id) {
-
-
-        getService().getGamesById(mContext.getString(R.string.igdb_api_key), id,
-                new RetrofitCallbackImpl<>(new RestCallbackImpl<>(callback)));
-    }
-
 }
