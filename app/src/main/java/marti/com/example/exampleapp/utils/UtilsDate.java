@@ -115,4 +115,11 @@ public class UtilsDate {
         return formattedDate;
     }
 
+    public static String secondsToDateString(int seconds){
+
+        Date d = new Date(seconds);
+        SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
+        return sd.format(d);
+    }
+
 }

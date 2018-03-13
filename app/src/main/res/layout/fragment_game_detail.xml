@@ -34,20 +34,29 @@
                 android:textSize="@dimen/app_text_size_big"
                 android:textStyle="bold" />
 
-            <!--TextView
-                android:id="@+id/slug"
+            <TextView
+                android:id="@+id/first_release_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/name"
                 android:textColor="@color/app_main_blue"
                 android:textSize="@dimen/app_text_size_medium"
-                android:textStyle="bold" /-->
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/name"
+                android:layout_below="@id/first_release_date"
+                android:textColor="@color/app_main_blue"
+                android:textSize="@dimen/app_text_size_medium"
+                />
+
+            <TextView
+                android:id="@+id/popularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/summary"
                 android:textColor="@color/app_main_blue"
                 android:textSize="@dimen/app_text_size_medium"
                 />
@@ -56,11 +65,34 @@
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/summary"
+                android:layout_below="@id/popularity"
                 android:layout_toLeftOf="@+id/imageView"
                 android:drawablePadding="5dp"
                 android:textColor="@color/app_secondary_blue"
                 android:textSize="@dimen/app_text_size_medium"/>
+
+            <TextView
+                android:id="@+id/total_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rating"
+                android:layout_toLeftOf="@+id/imageView"
+                android:drawablePadding="5dp"
+                android:textColor="@color/app_secondary_blue"
+                android:textSize="@dimen/app_text_size_medium"/>
+
+            <TextView
+                android:id="@+id/time_to_beat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/total_rating"
+                android:layout_toLeftOf="@+id/imageView"
+                android:drawablePadding="5dp"
+                android:textColor="@color/app_secondary_blue"
+                android:textSize="@dimen/app_text_size_medium"/>
+
+
+
 
             <TextView
                 android:id="@+id/empty_list_genres"
@@ -75,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/rating"
+                android:layout_below="@id/time_to_beat"
                 android:background="@color/app_white"
                 android:choiceMode="singleChoice"
                 android:scrollbars="vertical"/>

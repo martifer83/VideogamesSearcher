@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import marti.com.example.exampleapp.entity.gameigdbdetail.BeatingTime;
 import marti.com.example.exampleapp.entity.gameigdbdetail.Company;
 import marti.com.example.exampleapp.entity.gameigdbdetail.Cover;
-import marti.com.example.exampleapp.entity.gameigdbdetail.Genres;
 import marti.com.example.exampleapp.entity.gameigdbdetail.ReleaseDate;
 import marti.com.example.exampleapp.entity.gameigdbdetail.Screenshot;
 
@@ -21,8 +21,6 @@ public class GameIgdbDetail implements Parcelable {
     private int id;
     @SerializedName("name")
     private String name;
-    @SerializedName("slug")
-    private String slug;
     @SerializedName("created_at")
     private String created_at;
     @SerializedName("summary")
@@ -30,28 +28,65 @@ public class GameIgdbDetail implements Parcelable {
     @SerializedName("storyline")
     private String storyline;
     @SerializedName("first_release_date")
-    private int first_release_date;
+    private String first_release_date;
     @SerializedName("popularity")
     private float popularity;
+
+
+
     @SerializedName("time_to_beat")
-    private String time_to_beat;
+    private BeatingTime time_to_beat;
 
-    /*
-    first_release_date
-    popularity
-    total_rating
-    "time_to_beat": {
-      "hastly": 118482,
-      "normally": 260885,
-      "completely": 515172
-    },
+    public String getTotal_rating() {
+        return total_rating;
+    }
 
-    */
+    public void setTotal_rating(String total_rating) {
+        this.total_rating = total_rating;
+    }
+
+    @SerializedName("total_rating")
+    private String total_rating;
+
+
+
+    public String getStoryline() {
+        return storyline;
+    }
+
+    public void setStoryline(String storyline) {
+        this.storyline = storyline;
+    }
+
+    public String getFirst_release_date() {
+        return first_release_date;
+    }
+
+    public void setFirst_release_date(String first_release_date) {
+        this.first_release_date = first_release_date;
+    }
+
+    public float getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(float popularity) {
+        this.popularity = popularity;
+    }
+
+    public BeatingTime getTime_to_beat() {
+        return time_to_beat;
+    }
+
+    public void setTime_to_beat(BeatingTime time_to_beat) {
+        this.time_to_beat = time_to_beat;
+    }
+
 
    // @SerializedName("release_date")
    // private String release_date;
 
-    private ArrayList<Genres> genres;
+    //private ArrayList<Genres> genres;
 
     @SerializedName("rating")
     private float rating;
@@ -75,10 +110,6 @@ public class GameIgdbDetail implements Parcelable {
 
     public String getName() {
         return name;
-    }
-
-    public String getSlug() {
-        return slug;
     }
 
     public String getCreated_at() {
@@ -105,9 +136,9 @@ public class GameIgdbDetail implements Parcelable {
         return companies;
     }
 
-    public ArrayList<Genres> getGenres() {
+    /*public ArrayList<Genres> getGenres() {
         return genres;
-    }
+    }*/
 
     public ArrayList<Screenshot> getScreenshots() {
         return screenshots;
@@ -126,16 +157,20 @@ public class GameIgdbDetail implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
-       // dest.writeString(this.slug);
-        //dest.writeString(this.created_at);
+        dest.writeString(this.created_at);
         dest.writeString(this.summary);
-        dest.writeTypedList(genres);
-     //   dest.writeValue(this.rating);
-        dest.writeFloat(this.rating);
+        //dest.writeTypedList(genres);
 
+
+        dest.writeFloat(this.rating);
         dest.writeTypedList(release_dates);
         dest.writeTypedList(companies);
         dest.writeTypedList(screenshots);
+
+        dest.writeTypedObject(this.time_to_beat,0);
+        dest.writeFloat(this.popularity);
+        dest.writeString(this.total_rating);
+        dest.writeString(this.first_release_date);
 
    //     dest.writeParcelable(this.cover, 0);
 
@@ -149,16 +184,19 @@ public class GameIgdbDetail implements Parcelable {
 
         this.id = in.readInt();
         this.name = in.readString();
-     //   this.slug = in.readString();
-        //this.created_at = in.readString();
+        this.created_at = in.readString();
         this.summary = in.readString();
-        this.genres = in.createTypedArrayList(Genres.CREATOR);
+    //    this.genres = in.createTypedArrayList(Genres.CREATOR);
+
         this.rating = in.readFloat();
-
         this.release_dates = in.createTypedArrayList(ReleaseDate.CREATOR);
-
         this.companies = in.createTypedArrayList(Company.CREATOR);
         this.screenshots = in.createTypedArrayList(Screenshot.CREATOR);
+
+        this.time_to_beat = in.readTypedObject(BeatingTime.CREATOR);
+        this.popularity = in.readFloat();
+        this.total_rating = in.readString();
+        this.first_release_date = in.readString();
 
     //    this.cover =(Cover)in.readParcelable(Cover.class.getClassLoader());
     }

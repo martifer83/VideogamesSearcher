@@ -19,6 +19,7 @@ import marti.com.example.exampleapp.entity.gameigdbdetail.Genres;
 import marti.com.example.exampleapp.entity.gameigdbdetail.ReleaseDate;
 import marti.com.example.exampleapp.entity.gameigdbdetail.Screenshot;
 import marti.com.example.exampleapp.presenter.GameDetailsPresenter;
+import marti.com.example.exampleapp.utils.UtilsDate;
 import marti.com.example.exampleapp.utils.UtilsImage;
 import marti.com.example.exampleapp.view.BaseFragment;
 import marti.com.example.exampleapp.view.FilterListener;
@@ -63,8 +64,21 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
     @Bind(R.id.summary)
     protected TextView mSummary;
 
+    @Bind(R.id.popularity)
+    protected TextView mPopularity;
+
+    @Bind(R.id.first_release_date)
+    protected TextView mfirst_release_date;
+
     @Bind(R.id.rating)
     protected TextView mRating;
+
+    @Bind(R.id.time_to_beat)
+    protected TextView mTime_to_beat;
+
+    @Bind(R.id.total_rating)
+    protected TextView mTotal_rating;
+
     /*@Bind(R.id.developer)
     protected TextView mDeveloper;
     @Bind(R.id.publisher)
@@ -107,15 +121,18 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
 
     public void showGameDetail2() {
         mName.setText(mCurrentGame.getName());
-        //mSlug.setText(mCurrentGame.getSlug());
+        mPopularity.setText(String.valueOf(mCurrentGame.getPopularity()));
+        mfirst_release_date.setText(mCurrentGame.getFirst_release_date());
         mSummary.setText(mCurrentGame.getSummary());
         mRating.setText("Rating: " + Float.toString(mCurrentGame.getRating()));
         if(mCurrentGame.getRating() == 0)
             mRating.setVisibility(View.INVISIBLE);
         mReleases = mCurrentGame.getRelease_dates();
         mCompanies = mCurrentGame.getCompanies();
-        mGenres = mCurrentGame.getGenres();
+       // mGenres = mCurrentGame.getGenres();
         mScreenshots = mCurrentGame.getScreenshots();
+        mTime_to_beat.setText("Time To beat: " + UtilsDate.secondsToDateString(mCurrentGame.getTime_to_beat().getNormally()));  // we get the normal time only
+        mTotal_rating.setText("Total rating: " +mCurrentGame.getTotal_rating());
 
         populateReleasesList(mReleases);
         populateCompaniesList(mCompanies);
