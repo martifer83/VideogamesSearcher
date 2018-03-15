@@ -15,6 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.entity.GameIGDB;
+import marti.com.example.exampleapp.utils.UtilsImage;
 
 /**
  * Created by mferrando on 23/06/16.
@@ -66,11 +67,11 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
 
         // check if null
 
-        /*if (game.getCover() != null){
-            UtilsImage.displayImage(holder.cover, game.getCover(), R.drawable.dummy_event_im);
+        if (game.getCover() != null){
+            UtilsImage.displayImage(holder.cover, game.getCover().getUrl(), R.drawable.dummy_event_im);
         } else {
             holder.cover.setImageResource(R.drawable.dummy_event_im);
-        }*/
+        }
     }
 
     @Override

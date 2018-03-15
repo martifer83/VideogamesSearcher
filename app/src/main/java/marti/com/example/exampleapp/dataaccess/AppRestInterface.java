@@ -33,7 +33,8 @@ public interface AppRestInterface {
 
     // https://stackoverflow.com/questions/24610243/retrofit-error-url-query-string-must-not-have-replace-block
     // Query original: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name&filter[version_parent][not_exists]=1
-    // @GET("/games/&fields=name&filter[version_parent][not_exists]=1") ///games/?search=Halo
+    // Query with cover: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name,cover&filter[version_parent][not_exists]=1
+    // @GET("/games/&fields=name&filter[version_parent][not_exists]=1")
     @GET("/games/")   /// funciona
     void getGamesByName(
             @Query("search") String nom,

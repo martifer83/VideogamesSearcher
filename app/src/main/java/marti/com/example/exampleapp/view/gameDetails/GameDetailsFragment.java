@@ -131,7 +131,8 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
         mCompanies = mCurrentGame.getCompanies();
        // mGenres = mCurrentGame.getGenres();
         mScreenshots = mCurrentGame.getScreenshots();
-        mTime_to_beat.setText("Time To beat: " + UtilsDate.secondsToDateString(mCurrentGame.getTime_to_beat().getNormally()));  // we get the normal time only
+        if(mCurrentGame.getTime_to_beat() != null)
+            mTime_to_beat.setText("Time To beat: " + UtilsDate.secondsToDateString(mCurrentGame.getTime_to_beat().getNormally()));  // we get the normal time only
         mTotal_rating.setText("Total rating: " +mCurrentGame.getTotal_rating());
 
         populateReleasesList(mReleases);
