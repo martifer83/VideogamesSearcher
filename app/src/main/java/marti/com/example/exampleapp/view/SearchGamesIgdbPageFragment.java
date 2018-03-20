@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import marti.com.example.exampleapp.R;
+import marti.com.example.exampleapp.di.HasComponent;
+import marti.com.example.exampleapp.di.components.ActivityComponent;
 import marti.com.example.exampleapp.entity.Game;
 import marti.com.example.exampleapp.entity.GameIGDB;
 import marti.com.example.exampleapp.entity.GameIgdbDetail;
@@ -45,7 +47,8 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         configureRecyclerView();
-        setPresenter(new SearchGamePagePresenter(this));
+        //setPresenter(new SearchGamePagePresenter(this, ));
+        injectDependencies();
     }
 
     private void configureRecyclerView() {
@@ -60,6 +63,16 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
         super.onResume();
       //  Presenter p = getPresenter();
       //  getPresenter().getGamesbyName("Zelda");
+    }
+
+    @Override
+    protected void injectDependencies() {
+        try {
+            ((HasComponent<ActivityComponent>) getActivity()).getComponent().inject(this);
+        } catch (ClassCastException exception) {
+            throw new ClassCastException(getActivity().toString() +
+                    "must implement HasModule<MainComponent>");
+        }
     }
 
     @Override
@@ -104,17 +117,16 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
     @Override
     public void onItemClick(GameIGDB item, int position) {
         // Launch  query by ID
-        setPresenter(new SearchGamePagePresenter(this));
-
+        //setPresenter(new SearchGamePagePresenter(this,null));
         int id = item.getId();
-
         getPresenter().getGamesbyId(Integer.toString(id));
     }
 
     @Override
     public void updateFields(String filterText) {
 
-        setPresenter(new SearchGamePagePresenter(this));
+        // TODO: inject dependencies instead
+        setPresenter(new SearchGamePagePresenter(this,null));
         getPresenter().getGamesbyName(filterText);
 
         // Update adapter if it's not null

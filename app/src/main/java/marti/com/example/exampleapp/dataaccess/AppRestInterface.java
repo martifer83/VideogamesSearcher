@@ -11,6 +11,7 @@ import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.Path;
 import retrofit.http.Query;
+import rx.Observable;
 
 /**
  * Created by mferrando on 25/05/16.
@@ -35,7 +36,7 @@ public interface AppRestInterface {
     // Query original: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name&filter[version_parent][not_exists]=1
     // Query with cover: https://api-endpoint.igdb.com/games/?search=Fallout&fields=name,cover&filter[version_parent][not_exists]=1
     // @GET("/games/&fields=name&filter[version_parent][not_exists]=1")
-    @GET("/games/")   /// funciona
+    /*@GET("/games/")   /// funciona
     void getGamesByName(
             @Query("search") String nom,
             @Query("fields") String fields,
@@ -44,7 +45,20 @@ public interface AppRestInterface {
             @Header("user-key") String userkey,
             @Header("Accept") String accept,
             Callback<ArrayList<GameIGDB>> callback
+    );*/
+
+    // RX
+    @GET("/games/")
+    Observable<ArrayList<GameIGDB>> getGamesByName(
+            @Query("search") String nom,
+            @Query("fields") String fields,
+            @Query("filter[version_parent][not_exists]") String filter,
+
+            @Header("user-key") String userkey,
+            @Header("Accept") String accept
     );
+
+
 
 
 
@@ -76,4 +90,6 @@ public interface AppRestInterface {
             @Path("id") String id,
             Callback<GameIgdbResponse> callback
     );*/
+
+
 }

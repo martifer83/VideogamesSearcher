@@ -61,8 +61,13 @@ import marti.com.example.exampleapp.view.widget.EmptyRecyclerView;
 
         }
 
+    @Override
+    protected void injectDependencies() {
 
-        @Override
+    }
+
+
+    @Override
         public void onGamesReceived(ArrayList<Game> games) {
             //mOriginalEvents = new ArrayList<>(events);
             if (mAdapter == null) {
@@ -101,7 +106,6 @@ import marti.com.example.exampleapp.view.widget.EmptyRecyclerView;
         public void updateFields(String filterText) {
 
             setPresenter(new SearchGamePagePresenter(this));
-
             getPresenter().getGames(filterText);
 
             // Update adapter

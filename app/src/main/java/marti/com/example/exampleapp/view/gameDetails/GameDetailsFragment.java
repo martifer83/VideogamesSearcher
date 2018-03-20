@@ -340,4 +340,9 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
     public void onItemClick(ReleaseDate item, int position) {
 
     }
+
+    @Override
+    protected void injectDependencies() {
+
+    }
 }

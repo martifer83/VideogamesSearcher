@@ -2,9 +2,12 @@ package marti.com.example.exampleapp.presenter;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import marti.com.example.exampleapp.Application;
 import marti.com.example.exampleapp.business.logic.GameIgdbUseCases;
 import marti.com.example.exampleapp.business.logic.GameUseCases;
+import marti.com.example.exampleapp.business.logic.GetGameByNameUseCase;
 import marti.com.example.exampleapp.dataaccess.DataAccessGateway;
 import marti.com.example.exampleapp.dataaccess.DataAccessGatewayIgdb;
 import marti.com.example.exampleapp.dataaccess.Factory;
@@ -23,6 +26,8 @@ public class SearchGamePagePresenter extends BasePresenter{
     private DataAccessGateway mDataAccessGateway;
     private DataAccessGatewayIgdb mDataAccessGatewayIgdb;
 
+    private GetGameByNameUseCase getGameByNameUseCase = null;
+
     public interface View extends Presenter.View {
         void onGamesReceived(ArrayList<Game> games);
         void onGamesListIgdbReceived(ArrayList<GameIGDB> games);
@@ -30,8 +35,10 @@ public class SearchGamePagePresenter extends BasePresenter{
 
     }
 
-    public SearchGamePagePresenter(SearchGamePagePresenter.View view) {
+    public SearchGamePagePresenter(SearchGamePagePresenter.View view){
+
         mView = view;
+        // Todo delete DataAccesGateway
         if(mView.getContext() == null) {
             mDataAccessGateway = Factory.create(Application.getInstance().getApplicationContext());
             mDataAccessGatewayIgdb = Factory.createIgdbData(Application.getInstance().getApplicationContext());
@@ -40,10 +47,43 @@ public class SearchGamePagePresenter extends BasePresenter{
             mDataAccessGateway = Factory.create(mView.getContext());
             mDataAccessGatewayIgdb = Factory.createIgdbData(mView.getContext());
         }
+        
     }
+    
+    @Inject
+    public SearchGamePagePresenter(SearchGamePagePresenter.View view, GetGameByNameUseCase useCase){
+        mView = view;
+        if(useCase != null)
+            getGameByNameUseCase = useCase;
+
+        // Todo delete DataAccesGateway
+        if(mView.getContext() == null) {
+            mDataAccessGateway = Factory.create(Application.getInstance().getApplicationContext());
+            mDataAccessGatewayIgdb = Factory.createIgdbData(Application.getInstance().getApplicationContext());
+        }
+        else {
+            mDataAccessGateway = Factory.create(mView.getContext());
+            mDataAccessGatewayIgdb = Factory.createIgdbData(mView.getContext());
+        }
+
+    }
+
+    /*public SearchGamePagePresenter(SearchGamePagePresenter.View view) {
+        mView = view;
+
+        if(mView.getContext() == null) {
+            mDataAccessGateway = Factory.create(Application.getInstance().getApplicationContext());
+            mDataAccessGatewayIgdb = Factory.createIgdbData(Application.getInstance().getApplicationContext());
+        }
+        else {
+            mDataAccessGateway = Factory.create(mView.getContext());
+            mDataAccessGatewayIgdb = Factory.createIgdbData(mView.getContext());
+        }
+    }*/
 
     public void getGamesbyName(final String queryText) {
         mView.showLoading();
+        // old version useCase
         GameIgdbUseCases.getGamesByName(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIGDB>>(mView) {
             @Override
             public void successUIThread(ArrayList<GameIGDB> data) {
@@ -56,6 +96,11 @@ public class SearchGamePagePresenter extends BasePresenter{
                 getGamesbyName(queryText);
             }
         }, queryText);
+
+        // new version UseCase
+        getGameByNameUseCase.setParameters(queryText);
+        getGameByNameUseCase.subscribe();
+
     }
 
     public void getGamesbyId(final String queryText) {
@@ -65,7 +110,6 @@ public class SearchGamePagePresenter extends BasePresenter{
             public void successUIThread(ArrayList<GameIgdbDetail> data) {
                 mView.hideLoading();
                 mView.onGameIgdbReceived(data.get(0)); /// TODO check
-
             }
 
             @Override

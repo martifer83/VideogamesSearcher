@@ -130,9 +130,15 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         return this.presenter;
     }
 
+
+    //
+    protected abstract void injectDependencies();
+
     protected void setPresenter(T presenter) {
         this.presenter = presenter;
     }
+
+
 
     @Override
     public void showInfo(@StringRes int message) {
