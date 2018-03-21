@@ -64,10 +64,12 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
       //  Presenter p = getPresenter();
       //  getPresenter().getGamesbyName("Zelda");
     }
-
+    @SuppressWarnings("unchecked")
     @Override
     protected void injectDependencies() {
         try {
+           // Activity a = (HasComponent<ActivityComponent> getActivity());
+
             ((HasComponent<ActivityComponent>) getActivity()).getComponent().inject(this);
         } catch (ClassCastException exception) {
             throw new ClassCastException(getActivity().toString() +

@@ -1,20 +1,24 @@
 package marti.com.example.exampleapp.view;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.axa.amfcore.utils.imageloader.ImageLoader;
 
 import marti.com.example.exampleapp.R;
+import marti.com.example.exampleapp.common.AbstractBaseActivity;
+import marti.com.example.exampleapp.di.HasComponent;
+import marti.com.example.exampleapp.di.components.ActivityComponent;
+import marti.com.example.exampleapp.di.components.DaggerActivityComponent;
 
 //@BaseActivity.Params(layout = R.layout.drawer_layout)
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AbstractBaseActivity implements HasComponent<ActivityComponent> {
 
    // @Bind(R.id.toolbar)
    // protected Toolbar toolbar;
 
+    private ActivityComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,5 +84,20 @@ public class SearchActivity extends AppCompatActivity {
         }*/
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void injectDependencies(Bundle savedInstanceState) {
+        component = DaggerActivityComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
+        component.inject(this);
+    }
+
+
+    @Override
+    public ActivityComponent getComponent() {
+        return component;
     }
 }

@@ -3,6 +3,7 @@ package marti.com.example.exampleapp.di.components;
 import dagger.Component;
 import marti.com.example.exampleapp.di.PerActivity;
 import marti.com.example.exampleapp.di.modules.ActivityModule;
+import marti.com.example.exampleapp.view.SearchActivity;
 import marti.com.example.exampleapp.view.SearchGamesIgdbPageFragment;
 
 /**
@@ -14,5 +15,7 @@ import marti.com.example.exampleapp.view.SearchGamesIgdbPageFragment;
 public interface ActivityComponent {
 
     void inject(SearchGamesIgdbPageFragment searchGamesIgdbPageFragment);
+
+    void inject(SearchActivity searchActivity);
 
 }
