@@ -15,7 +15,6 @@ import marti.com.example.exampleapp.presenter.SearchGamePagePresenter;
 @Module
 public class ActivityModule {
 
-
     private final AppCompatActivity activity;
 
     public ActivityModule(AppCompatActivity activity) {

@@ -4,6 +4,7 @@ import dagger.Component;
 import marti.com.example.exampleapp.di.PerActivity;
 import marti.com.example.exampleapp.di.modules.ActivityModule;
 import marti.com.example.exampleapp.view.SearchActivity;
+import marti.com.example.exampleapp.view.SearchFragment;
 import marti.com.example.exampleapp.view.SearchGamesIgdbPageFragment;
 
 /**
@@ -13,6 +14,9 @@ import marti.com.example.exampleapp.view.SearchGamesIgdbPageFragment;
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
+
+
+    void inject(SearchFragment searchFragment);
 
     void inject(SearchGamesIgdbPageFragment searchGamesIgdbPageFragment);
 

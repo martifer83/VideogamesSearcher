@@ -121,36 +121,8 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
 
-
         searchView.setOnQueryTextListener(this);
 
-        /*if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-
-            queryTextListener = new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    Log.i("onQueryTextChange", newText);
-
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    Log.i("onQueryTextSubmit", query);
-
-                    mFilterListener = (FilterListener) pagerAdapter.getFragments()[0];
-                  //  SearchGamePagePresenter.View v = mFilterListener.
-                    mFilterListener.updateFields(query, v);
-
-
-                    return true;
-                }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
-        }*/
         super.onCreateOptionsMenu(menu, inflater);
     }
 

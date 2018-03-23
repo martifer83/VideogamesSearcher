@@ -44,11 +44,17 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
     private String urlCover; // provisional solution;
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        injectDependencies();
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         configureRecyclerView();
         //setPresenter(new SearchGamePagePresenter(this, ));
-        injectDependencies();
+        //injectDependencies();
     }
 
     private void configureRecyclerView() {
@@ -127,15 +133,16 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
     @Override
     public void updateFields(String filterText) {
 
+
         // TODO: inject dependencies instead
-        setPresenter(new SearchGamePagePresenter(this,null));
+        injectDependencies();
+        //setPresenter(new SearchGamePagePresenter(this,null));
         getPresenter().getGamesbyName(filterText);
 
         // Update adapter if it's not null
         if (mGamesIgdb != null) {
             mGamesIgdb.clear();
 
-            //  mSongs.addAll(currentEvents);
             mAdapterIdgb.setTextHighLighted(filterText);
             mAdapterIdgb.notifyDataSetChanged();
         }

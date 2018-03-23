@@ -46,28 +46,6 @@ public class SearchActivity extends AbstractBaseActivity implements HasComponent
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
-       // getMenuInflater().inflate(R.menu.menu_home, menu);
-        //MenuItem item = menu.findItem(R.id.badge);
-        //MenuItemCompat.setActionView(item, R.layout.badge_layout);
-        //RelativeLayout badgeLayout = (RelativeLayout)  MenuItemCompat.getActionView(item);
-
-
-//        MenuItem searchItem = menu.findItem(R.id.action_search);
-
-  //      SearchManager searchManager = (SearchManager) this.getSystemService(Context.SEARCH_SERVICE);
-
-    /*    SearchView searchView = null;
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
-        }
-*/
-
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -77,12 +55,6 @@ public class SearchActivity extends AbstractBaseActivity implements HasComponent
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
-
         return super.onOptionsItemSelected(item);
     }
 

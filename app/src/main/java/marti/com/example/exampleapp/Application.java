@@ -1,15 +1,17 @@
 package marti.com.example.exampleapp;
 
-import android.support.multidex.MultiDexApplication;
+import android.support.annotation.NonNull;
 
 import com.axa.amfcore.utils.imageloader.ImageLoader;
 
 import marti.com.example.exampleapp.di.components.ApplicationComponent;
+import marti.com.example.exampleapp.di.components.DaggerApplicationComponent;
+import marti.com.example.exampleapp.di.modules.ApplicationModule;
 
 /**
  * Created by mferrando on 13/04/16.
  */
-public class Application extends MultiDexApplication {
+public class Application extends android.app.Application {
 
     private static Application instance;
 
@@ -28,6 +30,8 @@ public class Application extends MultiDexApplication {
         // TODO agregar pinning
         ImageLoader.init(this, false);
 
+        initializeInjector();
+
 
     }
 
@@ -35,6 +39,14 @@ public class Application extends MultiDexApplication {
         return instance;
     }
 
+    private void initializeInjector() {
+        applicationComponent = prepareAppComponent();
+    }
 
+    @NonNull
+    ApplicationComponent prepareAppComponent() {
+        return DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this)).build();
+    }
 
 }

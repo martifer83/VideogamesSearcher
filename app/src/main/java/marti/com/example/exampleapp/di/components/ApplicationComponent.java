@@ -14,4 +14,12 @@ import marti.com.example.exampleapp.di.modules.ApplicationModule;
 public interface ApplicationComponent {
 
     //Context context();
+
+   /* @Named("subscriber")
+    Scheduler subscriber();
+
+    @Named("observer")
+    Scheduler observer();
+
+    Repository repository();*/
 }

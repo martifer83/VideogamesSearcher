@@ -15,6 +15,12 @@ public abstract class AbstractBaseActivity extends AppCompatActivity {
 
     private ActivityModule activityModule;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        injectDependencies(savedInstanceState);
+    }
+
     protected ActivityModule getActivityModule() {
         if (activityModule == null) {
             activityModule = new ActivityModule(this);
