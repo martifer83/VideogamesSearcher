@@ -1,6 +1,7 @@
 package marti.com.example.exampleapp;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import com.axa.amfcore.utils.imageloader.ImageLoader;
 
@@ -29,10 +30,7 @@ public class Application extends android.app.Application {
 
         // TODO agregar pinning
         ImageLoader.init(this, false);
-
         initializeInjector();
-
-
     }
 
     public static Application getInstance() {
@@ -47,6 +45,11 @@ public class Application extends android.app.Application {
     ApplicationComponent prepareAppComponent() {
         return DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
+    }
+
+    @VisibleForTesting
+    public void setComponent(ApplicationComponent applicationComponent) {
+        Application.applicationComponent = applicationComponent;
     }
 
 }

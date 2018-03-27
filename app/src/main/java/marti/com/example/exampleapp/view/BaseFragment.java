@@ -30,7 +30,7 @@ import marti.com.example.exampleapp.view.widget.LoadingBox;
  */
 public abstract class BaseFragment<T extends Presenter> extends Fragment implements Presenter.View {
 
-    private T presenter;
+    //private T presenter;
 
     private LoadingBox mLoadingBox;
 
@@ -62,6 +62,15 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         }
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        injectDependencies();
+        if (getPresenter() != null) {
+            //getPresenter().attachView(getPresenterView());
+        }
+    }
+
     private void createLoadingBox() {
         mLoadingBox = new LoadingBox(getContext(), getLoadingBoxColor());
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -73,6 +82,9 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         return R.color.app_main_blue;
     }
 
+
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -82,32 +94,32 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     @Override
     public void onPause() {
         super.onPause();
-        if (presenter != null) {
-            presenter.pause();
+        if (getPresenter() != null) {
+            getPresenter().pause();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (presenter != null) {
-            presenter.resume();
+        if (getPresenter() != null) {
+            getPresenter().resume();
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (presenter != null) {
-           presenter.destroy();
+        if (getPresenter() != null) {
+           getPresenter().destroy();
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (presenter != null) {
-            presenter.onActivityResult(requestCode, resultCode, data);
+        if (getPresenter() != null) {
+            getPresenter().onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -126,18 +138,10 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         return this;
     }
 
-    protected T getPresenter() {
-        return this.presenter;
-    }
-
+    protected abstract T getPresenter();
 
     //
     protected abstract void injectDependencies();
-
-    protected void setPresenter(T presenter) {
-        this.presenter = presenter;
-    }
-
 
 
     @Override

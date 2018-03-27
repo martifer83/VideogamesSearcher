@@ -10,6 +10,8 @@ import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.di.HasComponent;
@@ -20,7 +22,6 @@ import marti.com.example.exampleapp.entity.GameIgdbDetail;
 import marti.com.example.exampleapp.presenter.SearchGamePagePresenter;
 import marti.com.example.exampleapp.view.adapter.BaseAdapter;
 import marti.com.example.exampleapp.view.adapter.SearchGameIgdbListAdapter;
-import marti.com.example.exampleapp.view.adapter.SearchGameListAdapter;
 import marti.com.example.exampleapp.view.gameDetails.GameDetailsActivity;
 import marti.com.example.exampleapp.view.widget.EmptyRecyclerView;
 
@@ -35,11 +36,12 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
     @Bind(R.id.empty_list_game)
     protected TextView emptyList;
 
-    private SearchGameListAdapter mAdapter;
+    @Inject
+    SearchGamePagePresenter presenter;
+
     private SearchGameIgdbListAdapter mAdapterIdgb;
     private ArrayList<Game> mGames;
     private ArrayList<GameIGDB> mGamesIgdb;
-    private ArrayList<GameIgdbDetail> mGameDetailIgdb;
 
     private String urlCover; // provisional solution;
 
@@ -70,6 +72,12 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
       //  Presenter p = getPresenter();
       //  getPresenter().getGamesbyName("Zelda");
     }
+
+    @Override
+    protected SearchGamePagePresenter getPresenter() {
+        return presenter;
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     protected void injectDependencies() {
@@ -136,7 +144,6 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
 
         // TODO: inject dependencies instead
         injectDependencies();
-        //setPresenter(new SearchGamePagePresenter(this,null));
         getPresenter().getGamesbyName(filterText);
 
         // Update adapter if it's not null

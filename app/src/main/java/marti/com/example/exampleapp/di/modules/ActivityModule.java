@@ -23,10 +23,16 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
+    AppCompatActivity activity() {
+        return this.activity;
+    }
+
+    @Provides
+    @PerActivity
     SearchGamePagePresenter provideSearchGamePagePresenter(
-            SearchGamePagePresenter.View view,
+            //SearchGamePagePresenter.View view,
             GetGameByNameUseCase getGameByNameUseCase
     ) {
-        return new SearchGamePagePresenter(view, getGameByNameUseCase);
+        return new SearchGamePagePresenter( getGameByNameUseCase);
     }
 }

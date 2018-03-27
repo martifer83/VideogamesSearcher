@@ -51,8 +51,8 @@ public class SearchGamePagePresenter extends BasePresenter{
     }
     
     @Inject
-    public SearchGamePagePresenter(SearchGamePagePresenter.View view, GetGameByNameUseCase useCase){
-        mView = view;
+    public SearchGamePagePresenter(/*SearchGamePagePresenter.View view,*/ GetGameByNameUseCase useCase){
+        //mView = view;
         if(useCase != null)
             getGameByNameUseCase = useCase;
 

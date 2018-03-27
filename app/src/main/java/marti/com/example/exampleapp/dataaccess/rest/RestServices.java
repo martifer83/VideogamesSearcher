@@ -30,7 +30,7 @@ public class RestServices<T> {
     private T mService;
     private OkHttpClient mOkHttpClient;
 
-    public RestServices(Class<T> servicesClass, String endpoint/*, RequestInterceptor requestInterceptor*/) {
+    public RestServices() {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateTypeDeserializer())
                 .create();
@@ -38,13 +38,13 @@ public class RestServices<T> {
         mOkHttpClient = getUnsafeOkHttpClient();
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
-                .setEndpoint(endpoint)
+                .setEndpoint("warning hardcoded")
                 .setConverter(new GsonConverter(gson))
-                //.setRequestInterceptor(requestInterceptor)
                 .setClient(new OkClient(mOkHttpClient))
                 .build();
 
-        mService = restAdapter.create(servicesClass);
+        // Todo set parameters instead
+        //mService = restAdapter.create(servicesClass);
     }
 
     public void setAuthenticator(Authenticator authenticator) {
