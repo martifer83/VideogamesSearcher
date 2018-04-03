@@ -141,9 +141,9 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
     @Override
     public void updateFields(String filterText) {
 
-
         // TODO: inject dependencies instead
         injectDependencies();
+        getPresenter().setmView(this);
         getPresenter().getGamesbyName(filterText);
 
         // Update adapter if it's not null

@@ -178,7 +178,7 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
 
         mCurrentGame = getArguments().getParcelable(EXTRA_GAME);
         provisionalCover = getArguments().getString("COVER");
-        setPresenter(new GameDetailsPresenter(this));
+        //setPresenter(new GameDetailsPresenter(this));
 
         configureRecyclerView();
 
@@ -339,6 +339,11 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
     @Override
     public void onItemClick(ReleaseDate item, int position) {
 
+    }
+
+    @Override
+    protected GameDetailsPresenter getPresenter() {
+        return null;
     }
 
     @Override

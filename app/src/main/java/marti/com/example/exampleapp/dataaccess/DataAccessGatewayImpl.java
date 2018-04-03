@@ -49,8 +49,8 @@ class DataAccessGatewayImpl implements DataAccessGateway { // Must have 'Package
         };*/
 
         restService = new RestServices<>(
-                AppRestInterface.class,
-                context.getString(R.string.giantbomb_url));
+                /*AppRestInterface.class,
+                context.getString(R.string.giantbomb_url)*/);
         //restService.setAuthenticator(new TokenAuthenticator(context, getService()));
     }
 

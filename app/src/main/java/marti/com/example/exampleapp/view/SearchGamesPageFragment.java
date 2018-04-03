@@ -40,7 +40,7 @@ import marti.com.example.exampleapp.view.widget.EmptyRecyclerView;
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             configureRecyclerView();
-            setPresenter(new SearchGamePagePresenter(this));
+            //setPresenter(new SearchGamePagePresenter(this));
         }
 
         private void configureRecyclerView() {
@@ -60,6 +60,11 @@ import marti.com.example.exampleapp.view.widget.EmptyRecyclerView;
             getPresenter().getGamesbyName("Zelda");
 
         }
+
+    @Override
+    protected SearchGamePagePresenter getPresenter() {
+        return null;
+    }
 
     @Override
     protected void injectDependencies() {
@@ -105,7 +110,7 @@ import marti.com.example.exampleapp.view.widget.EmptyRecyclerView;
         @Override
         public void updateFields(String filterText) {
 
-            setPresenter(new SearchGamePagePresenter(this));
+            //setPresenter(new SearchGamePagePresenter(this));
             getPresenter().getGames(filterText);
 
             // Update adapter

@@ -17,6 +17,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import marti.com.example.exampleapp.BuildConfig;
+import marti.com.example.exampleapp.dataaccess.AppRestInterface;
 import marti.com.example.exampleapp.dataaccess.deserializer.DateTypeDeserializer;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -44,7 +45,7 @@ public class RestServices<T> {
                 .build();
 
         // Todo set parameters instead
-        //mService = restAdapter.create(servicesClass);
+        mService = restAdapter.create(AppRestInterface.class);
     }
 
     public void setAuthenticator(Authenticator authenticator) {
@@ -56,6 +57,8 @@ public class RestServices<T> {
     public T getService() {
         return mService;
     }
+
+    public void setService(T service) {mService = service;}
 
     //TODO qutar este metodo
     private static OkHttpClient getUnsafeOkHttpClient() {

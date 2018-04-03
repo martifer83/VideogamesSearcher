@@ -20,6 +20,8 @@ public class CloudRepository {
 
     public Observable<ArrayList<GameIGDB>> getGameByName(String name) {
         return restService.getService().getGamesByName(name,"","","","");
+        return restService.getService()
+
     }
 
 }

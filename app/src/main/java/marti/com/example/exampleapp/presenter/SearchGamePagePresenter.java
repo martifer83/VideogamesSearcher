@@ -28,6 +28,7 @@ public class SearchGamePagePresenter extends BasePresenter{
 
     private GetGameByNameUseCase getGameByNameUseCase = null;
 
+
     public interface View extends Presenter.View {
         void onGamesReceived(ArrayList<Game> games);
         void onGamesListIgdbReceived(ArrayList<GameIGDB> games);
@@ -55,17 +56,6 @@ public class SearchGamePagePresenter extends BasePresenter{
         //mView = view;
         if(useCase != null)
             getGameByNameUseCase = useCase;
-
-        // Todo delete DataAccesGateway
-        if(mView.getContext() == null) {
-            mDataAccessGateway = Factory.create(Application.getInstance().getApplicationContext());
-            mDataAccessGatewayIgdb = Factory.createIgdbData(Application.getInstance().getApplicationContext());
-        }
-        else {
-            mDataAccessGateway = Factory.create(mView.getContext());
-            mDataAccessGatewayIgdb = Factory.createIgdbData(mView.getContext());
-        }
-
     }
 
     /*public SearchGamePagePresenter(SearchGamePagePresenter.View view) {
@@ -80,6 +70,10 @@ public class SearchGamePagePresenter extends BasePresenter{
             mDataAccessGatewayIgdb = Factory.createIgdbData(mView.getContext());
         }
     }*/
+
+    public void setmView(SearchGamePagePresenter.View view){
+        mView = view;
+    }
 
     public void getGamesbyName(final String queryText) {
         mView.showLoading();
