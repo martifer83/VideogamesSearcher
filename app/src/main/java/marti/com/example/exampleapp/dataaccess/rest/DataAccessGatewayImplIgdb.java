@@ -40,9 +40,9 @@ public class DataAccessGatewayImplIgdb implements DataAccessGatewayIgdb { // Mus
     private DataAccessGatewayImplIgdb(Context context) {
         mContext = context;
 
-        restService = new RestServices<>(/*
+        restService = new RestServices<>(
                 AppRestInterface.class,
-                context.getString(R.string.igdb_url)*/);
+                context.getString(R.string.igdb_url));
 
     }
 

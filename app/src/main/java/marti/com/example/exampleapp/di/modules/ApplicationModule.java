@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.dataaccess.AppRestInterface;
 import marti.com.example.exampleapp.dataaccess.CloudRepository;
 import marti.com.example.exampleapp.dataaccess.Repository;
@@ -60,7 +61,7 @@ public class ApplicationModule {
     @Singleton
     RestServices<AppRestInterface> provideRestServices(
                                      ) {
-        return new RestServices<AppRestInterface>();
+        return new RestServices<>(AppRestInterface.class, marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_url));
     }
 
     @Provides

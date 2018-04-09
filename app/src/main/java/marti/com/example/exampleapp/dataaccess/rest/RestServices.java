@@ -17,7 +17,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import marti.com.example.exampleapp.BuildConfig;
-import marti.com.example.exampleapp.dataaccess.AppRestInterface;
 import marti.com.example.exampleapp.dataaccess.deserializer.DateTypeDeserializer;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
@@ -31,7 +30,7 @@ public class RestServices<T> {
     private T mService;
     private OkHttpClient mOkHttpClient;
 
-    public RestServices() {
+    public RestServices(Class<T> servicesClass, String endpoint) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateTypeDeserializer())
                 .create();
@@ -39,13 +38,13 @@ public class RestServices<T> {
         mOkHttpClient = getUnsafeOkHttpClient();
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setLogLevel(BuildConfig.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
-                .setEndpoint("warning hardcoded")
+                .setEndpoint(endpoint)
                 .setConverter(new GsonConverter(gson))
                 .setClient(new OkClient(mOkHttpClient))
                 .build();
 
         // Todo set parameters instead
-        mService = restAdapter.create(AppRestInterface.class);
+        mService = restAdapter.create(servicesClass);
     }
 
     public void setAuthenticator(Authenticator authenticator) {

@@ -2,6 +2,7 @@ package marti.com.example.exampleapp.dataaccess;
 
 import java.util.ArrayList;
 
+import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.dataaccess.rest.RestServices;
 import marti.com.example.exampleapp.entity.GameIGDB;
 import rx.Observable;
@@ -19,8 +20,10 @@ public class CloudRepository {
     }
 
     public Observable<ArrayList<GameIGDB>> getGameByName(String name) {
-        return restService.getService().getGamesByName(name,"","","","");
-        return restService.getService()
+
+        //marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key)
+
+        return restService.getService().getGamesByName(name,"name", "1",marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
 
     }
 
