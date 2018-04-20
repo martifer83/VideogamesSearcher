@@ -8,6 +8,9 @@ import marti.com.example.exampleapp.Application;
 import marti.com.example.exampleapp.business.logic.GameIgdbUseCases;
 import marti.com.example.exampleapp.business.logic.GameUseCases;
 import marti.com.example.exampleapp.business.logic.GetGameByNameUseCase;
+import marti.com.example.exampleapp.common.AbstractSubscriber;
+import marti.com.example.exampleapp.common.error.ErrorManagerInterface;
+import marti.com.example.exampleapp.common.error.ErrorMessage;
 import marti.com.example.exampleapp.dataaccess.DataAccessGateway;
 import marti.com.example.exampleapp.dataaccess.DataAccessGatewayIgdb;
 import marti.com.example.exampleapp.dataaccess.Factory;
@@ -78,7 +81,7 @@ public class SearchGamePagePresenter extends BasePresenter{
     public void getGamesbyName(final String queryText) {
         mView.showLoading();
         // old version useCase
-        GameIgdbUseCases.getGamesByName(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIGDB>>(mView) {
+      /*  GameIgdbUseCases.getGamesByName(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIGDB>>(mView) {
             @Override
             public void successUIThread(ArrayList<GameIGDB> data) {
                 mView.hideLoading();
@@ -90,7 +93,7 @@ public class SearchGamePagePresenter extends BasePresenter{
                 getGamesbyName(queryText);
             }
         }, queryText);
-
+        */
         // new version UseCase
         getGameByNameUseCase.setParameters(queryText);
         getGameByNameUseCase.subscribe();
@@ -161,6 +164,24 @@ public class SearchGamePagePresenter extends BasePresenter{
 
         GameIgdbDetail game = gameIgdbResponse.getMyGame();
 
+    }
+
+    private class GamesSubscriber extends AbstractSubscriber<String> {
+        public GamesSubscriber(ErrorManagerInterface errorManager) {
+            super(errorManager);
+        }
+
+        @Override
+        public void onNext(ArrayList<GameIGDB> data) {
+            // do stuff
+            mView.hideLoading();
+            mView.onGamesListIgdbReceived(data);
+        }
+
+        @Override
+        protected void onError(ErrorMessage errorMessage) {
+            // do nothing
+        }
     }
 
 }
