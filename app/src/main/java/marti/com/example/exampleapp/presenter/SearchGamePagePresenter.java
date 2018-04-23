@@ -1,6 +1,7 @@
 package marti.com.example.exampleapp.presenter;
 
 import java.util.ArrayList;
+import java.util.logging.ErrorManager;
 
 import javax.inject.Inject;
 
@@ -28,7 +29,7 @@ public class SearchGamePagePresenter extends BasePresenter{
     private SearchGamePagePresenter.View mView;
     private DataAccessGateway mDataAccessGateway;
     private DataAccessGatewayIgdb mDataAccessGatewayIgdb;
-
+    private ErrorManagerInterface errorManager;
     private GetGameByNameUseCase getGameByNameUseCase = null;
 
 
@@ -96,7 +97,7 @@ public class SearchGamePagePresenter extends BasePresenter{
         */
         // new version UseCase
         getGameByNameUseCase.setParameters(queryText);
-        getGameByNameUseCase.subscribe();
+        getGameByNameUseCase.subscribe(new GamesSubscriber(errorManager));
 
     }
 
@@ -106,7 +107,7 @@ public class SearchGamePagePresenter extends BasePresenter{
             @Override
             public void successUIThread(ArrayList<GameIgdbDetail> data) {
                 mView.hideLoading();
-                mView.onGameIgdbReceived(data.get(0)); /// TODO check
+                mView.onGameIgdbReceived(data.get(0)); //TODO check
             }
 
             @Override
@@ -166,10 +167,11 @@ public class SearchGamePagePresenter extends BasePresenter{
 
     }
 
-    private class GamesSubscriber extends AbstractSubscriber<String> {
+    private class GamesSubscriber extends AbstractSubscriber<ArrayList<GameIGDB>> {
         public GamesSubscriber(ErrorManagerInterface errorManager) {
             super(errorManager);
         }
+
 
         @Override
         public void onNext(ArrayList<GameIGDB> data) {
