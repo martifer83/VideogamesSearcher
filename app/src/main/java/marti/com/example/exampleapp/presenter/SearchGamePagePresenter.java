@@ -31,6 +31,7 @@ public class SearchGamePagePresenter extends BasePresenter{
     private DataAccessGatewayIgdb mDataAccessGatewayIgdb;
     private ErrorManagerInterface errorManager;
     private GetGameByNameUseCase getGameByNameUseCase = null;
+    private GetGameByNameUseCase getGameByIdUseCase = null;
 
 
     public interface View extends Presenter.View {
@@ -115,6 +116,9 @@ public class SearchGamePagePresenter extends BasePresenter{
                 getGamesbyId(queryText);
             }
         }, queryText);
+
+
+
     }
 
     public void getGames(final String queryText) {
