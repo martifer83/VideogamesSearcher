@@ -76,13 +76,26 @@ public interface AppRestInterface {
     /games/1942?fields=*
     */
 
-    @GET("/games/{id}?fields*")
+    /*@GET("/games/{id}?fields*")
     void getGamesById(
             @Path("id") String id,
             @Header("user-key") String userkey, //
             @Header("Accept") String accept,
             Callback<ArrayList<GameIgdbDetail>> callback
     );
+*/
+    // getGameByIdExample
+    //https://api-endpoint.igdb.com/games/1942?fields=name&filter[version_parent][not_exists]=1
+    //https://api-endpoint.igdb.com/games/1942?fields=*
+
+    @GET("/games/{id}")
+    Observable<ArrayList<GameIgdbDetail>> getGameById(
+            @Path("id") String id,
+            @Query("fields") String fields,
+            @Header("user-key") String userkey,
+            @Header("Accept") String accept
+    );
+
 
    /*@GET("/games/{id}")
     void getGamesById(

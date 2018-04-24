@@ -3,6 +3,7 @@ package marti.com.example.exampleapp.dataaccess;
 import java.util.ArrayList;
 
 import marti.com.example.exampleapp.entity.GameIGDB;
+import marti.com.example.exampleapp.entity.GameIgdbDetail;
 import rx.Observable;
 
 /**
@@ -20,5 +21,10 @@ public class RepositoryImpl implements Repository {
     @Override
     public Observable<ArrayList<GameIGDB>> getGameByName(String name) {
         return cloudRepository.getGameByName(name);
+    }
+
+    @Override
+    public Observable<ArrayList<GameIgdbDetail>> getGameById(String id) {
+        return cloudRepository.getGameById(id);
     }
 }

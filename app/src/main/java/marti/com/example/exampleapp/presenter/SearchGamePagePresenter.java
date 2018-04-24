@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import marti.com.example.exampleapp.Application;
 import marti.com.example.exampleapp.business.logic.GameIgdbUseCases;
 import marti.com.example.exampleapp.business.logic.GameUseCases;
+import marti.com.example.exampleapp.business.logic.GetGameByIdUseCase;
 import marti.com.example.exampleapp.business.logic.GetGameByNameUseCase;
 import marti.com.example.exampleapp.common.AbstractSubscriber;
 import marti.com.example.exampleapp.common.error.ErrorManagerInterface;
@@ -31,7 +32,7 @@ public class SearchGamePagePresenter extends BasePresenter{
     private DataAccessGatewayIgdb mDataAccessGatewayIgdb;
     private ErrorManagerInterface errorManager;
     private GetGameByNameUseCase getGameByNameUseCase = null;
-    private GetGameByNameUseCase getGameByIdUseCase = null;
+    private GetGameByIdUseCase getGameByIdUseCase = null;
 
 
     public interface View extends Presenter.View {
@@ -57,10 +58,13 @@ public class SearchGamePagePresenter extends BasePresenter{
     }
     
     @Inject
-    public SearchGamePagePresenter(/*SearchGamePagePresenter.View view,*/ GetGameByNameUseCase useCase){
+    public SearchGamePagePresenter(/*SearchGamePagePresenter.View view,*/ GetGameByNameUseCase useCase, GetGameByIdUseCase getGameByIdUseCase){
         //mView = view;
-        if(useCase != null)
-            getGameByNameUseCase = useCase;
+        if(useCase != null) {
+            this.getGameByNameUseCase = useCase;
+            this.getGameByIdUseCase = getGameByIdUseCase;
+
+        }
     }
 
     /*public SearchGamePagePresenter(SearchGamePagePresenter.View view) {
@@ -104,7 +108,7 @@ public class SearchGamePagePresenter extends BasePresenter{
 
     public void getGamesbyId(final String queryText) {
        // mView.showLoading();
-        GameIgdbUseCases.getGamesById(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIgdbDetail>>(mView) {
+        /*GameIgdbUseCases.getGamesById(mDataAccessGatewayIgdb, new BusinessCallbackImpl<ArrayList<GameIgdbDetail>>(mView) {
             @Override
             public void successUIThread(ArrayList<GameIgdbDetail> data) {
                 mView.hideLoading();
@@ -116,7 +120,10 @@ public class SearchGamePagePresenter extends BasePresenter{
                 getGamesbyId(queryText);
             }
         }, queryText);
+        */
 
+        getGameByIdUseCase.setParameters(queryText);
+        getGameByIdUseCase.subscribe(new GamesByIdSubscriber(errorManager));
 
 
     }
@@ -182,6 +189,25 @@ public class SearchGamePagePresenter extends BasePresenter{
             // do stuff
             mView.hideLoading();
             mView.onGamesListIgdbReceived(data);
+        }
+
+        @Override
+        protected void onError(ErrorMessage errorMessage) {
+            // do nothing
+        }
+    }
+
+    private class GamesByIdSubscriber extends AbstractSubscriber<ArrayList<GameIgdbDetail>> {
+        public GamesByIdSubscriber(ErrorManagerInterface errorManager) {
+            super(errorManager);
+        }
+
+
+        @Override
+        public void onNext(ArrayList<GameIgdbDetail> data) {
+            // do stuff
+            mView.hideLoading();
+            mView.onGameIgdbReceived(data.get(0));
         }
 
         @Override

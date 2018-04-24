@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import dagger.Module;
 import dagger.Provides;
+import marti.com.example.exampleapp.business.logic.GetGameByIdUseCase;
 import marti.com.example.exampleapp.business.logic.GetGameByNameUseCase;
 import marti.com.example.exampleapp.di.PerActivity;
 import marti.com.example.exampleapp.presenter.SearchGamePagePresenter;
@@ -31,8 +32,9 @@ public class ActivityModule {
     @PerActivity
     SearchGamePagePresenter provideSearchGamePagePresenter(
            // SearchGamePagePresenter.View view,
-            GetGameByNameUseCase getGameByNameUseCase
+            GetGameByNameUseCase getGameByNameUseCase,
+            GetGameByIdUseCase getGameByIdUseCase
     ) {
-        return new SearchGamePagePresenter(getGameByNameUseCase);
+        return new SearchGamePagePresenter(getGameByNameUseCase, getGameByIdUseCase);
     }
 }

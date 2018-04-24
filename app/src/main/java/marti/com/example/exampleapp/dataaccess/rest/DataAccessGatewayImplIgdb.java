@@ -53,8 +53,8 @@ public class DataAccessGatewayImplIgdb implements DataAccessGatewayIgdb { // Mus
     @Override
     public void getGamesById(@NonNull DataCallback<ArrayList<GameIgdbDetail>> callback, String id) {
 
-        getService().getGamesById(id,mContext.getString(R.string.igdb_api_key),"application/json",
-                new RetrofitCallbackImpl<>(new RestCallbackImpl<>(callback)));
+        //getService().getGamesById(id,mContext.getString(R.string.igdb_api_key),"application/json",
+          //      new RetrofitCallbackImpl<>(new RestCallbackImpl<>(callback)));
     }
 
     @Override

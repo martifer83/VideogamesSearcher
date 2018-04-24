@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import marti.com.example.exampleapp.BuildConfig;
 import marti.com.example.exampleapp.common.error.ErrorManagerInterface;
 import marti.com.example.exampleapp.common.error.ErrorMessage;
-import marti.com.example.exampleapp.entity.GameIGDB;
 import rx.Subscriber;
 //import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 
@@ -36,8 +35,6 @@ public abstract class AbstractSubscriber<T> extends Subscriber<T> {
         ErrorMessage errorMessage = errorManager.processError(e);
         onError(errorMessage);
     }
-
-    public abstract void onNext(ArrayList<GameIGDB> data);
 
     protected abstract void onError(ErrorMessage errorMessage);
 

@@ -13,5 +13,5 @@ import rx.Observable;
 public interface Repository {
 
     Observable<ArrayList<GameIGDB>> getGameByName(String name);
-    Observable<ArrayList<GameIgdbDetail>> getGameById(int id);
+    Observable<ArrayList<GameIgdbDetail>> getGameById(String id);
 }

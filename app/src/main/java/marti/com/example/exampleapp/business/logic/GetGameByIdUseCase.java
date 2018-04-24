@@ -15,7 +15,7 @@ import rx.Scheduler;
 
 public class GetGameByIdUseCase extends AbstractUseCase<ArrayList<GameIgdbDetail>> {
 
-private int id;
+private String id;
 
 @Inject
 public GetGameByIdUseCase(@NonNull Repository repository,
@@ -24,7 +24,7 @@ public GetGameByIdUseCase(@NonNull Repository repository,
         super(repository, subscriberScheduler, observableScheduler);
         }
 
-public void setParameters(int id) {
+public void setParameters(String id) {
         this.id = id;
         }
 
