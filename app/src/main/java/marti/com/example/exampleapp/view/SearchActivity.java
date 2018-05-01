@@ -24,14 +24,11 @@ public class SearchActivity extends AbstractBaseActivity implements HasComponent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       // ButterKnife.bind(this);
-
         setContentView(R.layout.activity_main);
 
         ImageLoader.init(this, false);
 
         getSupportActionBar().setTitle("GameSearch");
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // launch fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, new SearchFragment()).commit();
@@ -66,8 +63,6 @@ public class SearchActivity extends AbstractBaseActivity implements HasComponent
                 .build();
         component.inject(this);
     }
-
-
     @Override
     public ActivityComponent getComponent() {
         return component;

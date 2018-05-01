@@ -6,13 +6,13 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/event_list_image_height"
         android:adjustViewBounds="false"
         android:scaleType="fitCenter"
-        tools:src="@drawable/dummy_event_im"/>
+        tools:src="@drawable/dummy_event_im"/-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:textColor="@color/app_main_blue"
             android:textSize="@dimen/app_text_size_big"
             android:textStyle="bold"
-            tools:text="Wednesday, July 24th 2015"/>
+            tools:text=""/>
 
         <TextView
             android:id="@+id/aliases"
@@ -42,7 +42,7 @@
             android:textSize="@dimen/app_text_size_medium"
             android:maxLines="2"
             android:textStyle="italic"
-            tools:text="San Juan"/>
+            tools:text=""/>
 
         <TextView
             android:id="@+id/original_release_data"

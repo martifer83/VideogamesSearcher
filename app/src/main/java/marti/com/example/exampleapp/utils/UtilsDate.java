@@ -1,6 +1,7 @@
 package marti.com.example.exampleapp.utils;
 
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.text.Format;
@@ -120,6 +121,13 @@ public class UtilsDate {
         Date d = new Date(seconds);
         SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
         return sd.format(d);
+    }
+
+    public static String getDateFromTimeStamp(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("EEE MMM dd hh:mm:ss yyyy ", cal).toString();
+        return date;
     }
 
 }

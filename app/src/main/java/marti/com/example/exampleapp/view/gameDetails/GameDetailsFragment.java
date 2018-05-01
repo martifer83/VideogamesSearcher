@@ -122,8 +122,11 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
     public void showGameDetail2() {
         mName.setText(mCurrentGame.getName());
         mPopularity.setText(String.valueOf(mCurrentGame.getPopularity()));
-        mfirst_release_date.setText(mCurrentGame.getFirst_release_date());
-        mSummary.setText(mCurrentGame.getSummary());
+
+        String Timestamp = mCurrentGame.getFirst_release_date();
+
+        mfirst_release_date.setText("First release date: "+UtilsDate.getDateFromTimeStamp(Long.parseLong(mCurrentGame.getFirst_release_date())));
+        mSummary.setText("Summary: /n"+mCurrentGame.getSummary());
         mRating.setText("Rating: " + Float.toString(mCurrentGame.getRating()));
         if(mCurrentGame.getRating() == 0)
             mRating.setVisibility(View.INVISIBLE);

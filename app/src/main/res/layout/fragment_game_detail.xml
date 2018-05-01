@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/cover"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/event_list_image_height"
+        android:layout_height="1dp"
         android:adjustViewBounds="false"
         android:scaleType="fitCenter"
         tools:src="@drawable/dummy_event_im"/>
