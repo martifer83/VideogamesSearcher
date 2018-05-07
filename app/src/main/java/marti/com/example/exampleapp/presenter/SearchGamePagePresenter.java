@@ -1,6 +1,8 @@
 package marti.com.example.exampleapp.presenter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.ErrorManager;
 
 import javax.inject.Inject;
@@ -147,6 +149,8 @@ public class SearchGamePagePresenter extends BasePresenter{
     private ArrayList<Game> builtGamesList(GameResponse gameResponse) {
         ArrayList<Game> games = new ArrayList<>();
 
+        // sort by popularity
+
         if (gameResponse.getMyGames() != null) {
             for (Game myGame : gameResponse.getMyGames()) {
                 games.add(myGame);
@@ -154,6 +158,8 @@ public class SearchGamePagePresenter extends BasePresenter{
         }
         return games;
     }
+
+
 
     private ArrayList<GameIGDB> builtGamesIGDBList(GameIgdbResponse gameIgdbResponse) {
         ArrayList<GameIGDB> games = new ArrayList<>();
@@ -187,6 +193,9 @@ public class SearchGamePagePresenter extends BasePresenter{
         @Override
         public void onNext(ArrayList<GameIGDB> data) {
             // do stuff
+
+            //Collections.reverse(data);
+
             mView.hideLoading();
             mView.onGamesListIgdbReceived(data);
         }

@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.inject.Inject;
 
@@ -101,6 +103,7 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
         //mOriginalEvents = new ArrayList<>(events);
         if (mAdapterIdgb == null) {
             mGamesIgdb = games;
+            Collections.sort(mGamesIgdb, new SortbyPopularity());
             mAdapterIdgb = new SearchGameIgdbListAdapter(mGamesIgdb, this);
             mRecyclerView.setAdapter(mAdapterIdgb);
             // Add the sticky headers decoration
@@ -109,8 +112,28 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
             // Update adapter
             mGamesIgdb.clear();
             mGamesIgdb.addAll(games);
+            Collections.sort(mGamesIgdb, new SortbyPopularity());
             mAdapterIdgb.setTextHighLighted(null);
             mAdapterIdgb.notifyDataSetChanged();
+        }
+    }
+
+    class SortbyPopularity implements Comparator<GameIGDB>
+    {
+        // Used for sorting in ascending order of
+        // roll number
+        public int compare(GameIGDB a, GameIGDB b)
+        {
+
+            int retval = Float.compare(a.getPopularity(), b.getPopularity());
+
+            if( retval > 0 ){
+                return -1;
+            }else if(retval < 0){
+                return 1;
+            }else{
+                return 0;
+            }
         }
     }
 

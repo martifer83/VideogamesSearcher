@@ -60,6 +60,6 @@ public class DataAccessGatewayImplIgdb implements DataAccessGatewayIgdb { // Mus
     @Override
     public void getGamesByName(@NonNull DataCallback<ArrayList<GameIGDB>> callback, String Text) {
         // https://stackoverflow.com/questions/36656827/how-to-parse-list-of-json-objects-surrounded-by-using-retrofit-and-gson
-        getService().getGamesByName(Text,"name","1",mContext.getString(R.string.igdb_api_key),"application/json");
+       // getService().getGamesByName(Text,"name","1",mContext.getString(R.string.igdb_api_key),"application/json");
     }
 }

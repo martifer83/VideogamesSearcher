@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +50,8 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
         super(items, listener);
         setHasStableIds(true);
     }
+
+
 
     @Override
     public int getLayoutResId(int viewType) {

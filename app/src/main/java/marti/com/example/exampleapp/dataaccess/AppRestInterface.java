@@ -52,6 +52,7 @@ public interface AppRestInterface {
     Observable<ArrayList<GameIGDB>> getGamesByName(
             @Query("search") String nom,
             @Query("fields") String fields,
+            @Query("limit") int limit,
             @Query("filter[version_parent][not_exists]") String filter,
 
             @Header("user-key") String userkey,

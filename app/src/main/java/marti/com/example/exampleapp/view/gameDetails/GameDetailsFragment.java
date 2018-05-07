@@ -121,23 +121,28 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
 
     public void showGameDetail2() {
         mName.setText(mCurrentGame.getName());
-        mPopularity.setText(String.valueOf(mCurrentGame.getPopularity()));
-
-        String Timestamp = mCurrentGame.getFirst_release_date();
-
+        mPopularity.setText("Popularity: "+String.valueOf(mCurrentGame.getPopularity()));
         mfirst_release_date.setText("First release date: "+UtilsDate.getDateFromTimeStamp(Long.parseLong(mCurrentGame.getFirst_release_date())));
-        mSummary.setText("Summary: /n"+mCurrentGame.getSummary());
+        mSummary.setText("Summary: \n"+mCurrentGame.getSummary());
         mRating.setText("Rating: " + Float.toString(mCurrentGame.getRating()));
         if(mCurrentGame.getRating() == 0)
             mRating.setVisibility(View.INVISIBLE);
-        mReleases = mCurrentGame.getRelease_dates();
-        mCompanies = mCurrentGame.getCompanies();
-       // mGenres = mCurrentGame.getGenres();
-        mScreenshots = mCurrentGame.getScreenshots();
-        if(mCurrentGame.getTime_to_beat() != null)
-            mTime_to_beat.setText("Time To beat: " + UtilsDate.secondsToDateString(mCurrentGame.getTime_to_beat().getNormally()));  // we get the normal time only
+        String normaly;
+        String hastly;
+        String completely;
+        if(mCurrentGame.getTime_to_beat() != null) {
+            normaly = UtilsDate.secondsToHour(mCurrentGame.getTime_to_beat().getNormally());
+            hastly = UtilsDate.secondsToHour(mCurrentGame.getTime_to_beat().getHastly());
+            completely = UtilsDate.secondsToHour(mCurrentGame.getTime_to_beat().getCompletely());
+            mTime_to_beat.setText("Time To beat: (hastly/normaly/completly) " + hastly+"h "+  normaly +"h "+ completely +"h ");  // we get the normal time only
+        }
         mTotal_rating.setText("Total rating: " +mCurrentGame.getTotal_rating());
 
+
+        mReleases = mCurrentGame.getRelease_dates();
+        mCompanies = mCurrentGame.getCompanies();
+        // mGenres = mCurrentGame.getGenres();
+        mScreenshots = mCurrentGame.getScreenshots();
         populateReleasesList(mReleases);
         populateCompaniesList(mCompanies);
         populateGenresList(mGenres);
@@ -213,18 +218,6 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
     @OnClick(R.id.name)
     protected void onNameClick() {
         // TODO
-    }
-
-    private ArrayList<Song> builtEventsList(SongResponse songsResponse) {
-        ArrayList<Song> songs = new ArrayList<>();
-
-        if (songsResponse.getMySongs() != null) {
-            for (Song myEvent : songsResponse.getMySongs()) {
-                //    myEvent.setType(EventType.MY);
-                songs.add(myEvent);
-            }
-        }
-        return songs;
     }
 
     private void populateGenresList(ArrayList<Genres> genres){

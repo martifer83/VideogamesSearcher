@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/screenshot_url_list"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/event_list_image_height"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
             android:adjustViewBounds="false"
             android:scaleType="fitCenter"
             tools:src="@drawable/dummy_event_im"/>

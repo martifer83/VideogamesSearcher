@@ -31,6 +31,10 @@ public abstract class BaseAdapter<I, V> extends RecyclerView.Adapter<BaseAdapter
     public abstract void updateViewHolder(V holder, I item);
 
 
+    public ArrayList<I> getmItems() {
+        return mItems;
+    }
+
     private ArrayList<I> mItems;
     private OnItemClickListener<I> mOnItemClickListener;
 

@@ -12,6 +12,8 @@ public class GameIGDB implements Parcelable {
 
     private int id;
     private String name;
+    private Cover cover;
+    private float popularity;
 
     public int getId() {
         return id;
@@ -19,6 +21,10 @@ public class GameIGDB implements Parcelable {
 
     public String getName() {
         return name;
+    }
+
+    public float getPopularity() {
+        return popularity;
     }
 
     public Cover getCover() {
@@ -29,7 +35,9 @@ public class GameIGDB implements Parcelable {
         this.cover = cover;
     }
 
-    private Cover cover;
+    public void setPopularity(float popularity) {
+        this.popularity = popularity;
+    }
 
     @Override
     public int describeContents() {
@@ -40,6 +48,7 @@ public class GameIGDB implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
+        dest.writeFloat(this.popularity);
         dest.writeTypedObject(this.cover,0);
     }
 
@@ -49,6 +58,7 @@ public class GameIGDB implements Parcelable {
     protected GameIGDB(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
+        this.popularity = in.readFloat();
         this.cover =in.readParcelable(Cover.class.getClassLoader());
     }
 

@@ -116,17 +116,24 @@ public class UtilsDate {
         return formattedDate;
     }
 
-    public static String secondsToDateString(int seconds){
+    public static String secondsToHour(int seconds){
 
-        Date d = new Date(seconds);
-        SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
-        return sd.format(d);
+        int i = seconds/3600;
+        return String.valueOf(i);
     }
+
+    /*public static String secondsToDateString(int seconds){
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(seconds*1000);
+        String date = DateFormat.format(" hh:mm:ss ", cal).toString();
+        return date;
+    }*/
 
     public static String getDateFromTimeStamp(long time) {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time);
-        String date = DateFormat.format("EEE MMM dd hh:mm:ss yyyy ", cal).toString();
+        //String date = DateFormat.format("EEE MMM dd hh:mm:ss yyyy ", cal).toString();
+        String date = DateFormat.format(" MMM dd yyyy ", cal).toString();
         return date;
     }
 

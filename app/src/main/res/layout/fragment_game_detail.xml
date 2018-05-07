@@ -15,8 +15,8 @@
 
         <ScrollView
             android:id="@+id/scroll"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_above="@+id/feedback_send"
             android:fillViewport="true" >
 
@@ -108,9 +108,10 @@
                 android:layout_height="wrap_content"
 
                 android:layout_below="@id/time_to_beat"
+                android:layout_marginTop="-1dp"
                 android:background="@color/app_white"
                 android:choiceMode="singleChoice"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical" />
 
             <TextView
                 android:id="@+id/empty_list_releases"
@@ -157,12 +158,13 @@
 
             <marti.com.example.exampleapp.view.widget.EmptyRecyclerView
                 android:id="@+id/list_screenshots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/list_companies"
+                android:layout_marginTop="-48dp"
                 android:background="@color/app_white"
                 android:choiceMode="singleChoice"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical" />
 
         </RelativeLayout>
     </ScrollView>
