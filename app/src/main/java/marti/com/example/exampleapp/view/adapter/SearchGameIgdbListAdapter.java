@@ -28,11 +28,19 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
     public class ViewHolder {
         @Bind(R.id.cover)
         protected ImageView cover;
+
         @Bind(R.id.name)
         protected TextView name;
 
+       // @Bind(R.id.popularity)
+       // protected TextView popularity;
+
         @Bind(R.id.release_data)
         protected TextView release_data;
+
+        @Bind(R.id.rating)
+        protected TextView rating;
+
 
     }
 
@@ -67,8 +75,8 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
     public void updateViewHolder(ViewHolder holder, GameIGDB game) {
         // UtilsEditText.setHighLightedText(holder.name, item.getName(), mTextHighLighted);
         holder.name.setText(game.getName());
-      //  holder.release_data.setText(game.getRelease_date());
-
+        holder.release_data.setText(Float.toString(game.getRelease_date()));
+        holder.rating.setText(Float.toString(game.getRating()));
         // check if null
 
         if (game.getCover() != null){
