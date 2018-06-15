@@ -24,7 +24,7 @@ public class CloudRepository {
 
         //marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key)
 
-        return restService.getService().getGamesByName(name,"name,popularity,rating,cover",50 ,"1",marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
+        return restService.getService().getGamesByName(name,"name,popularity,rating,cover,first_release_date",50 ,"1",marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
 
     }
 

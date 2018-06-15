@@ -15,14 +15,14 @@ public class GameIGDB implements Parcelable {
     private Cover cover;
     private float popularity;
     private float rating;
-    private float release_date;
+    private String first_release_date;
 
-    public float getRelease_date() {
-        return release_date;
+    public String getRelease_date() {
+        return first_release_date;
     }
 
-    public void setRelease_date(float release_date) {
-        this.release_date = release_date;
+    public void setRelease_date(String first_release_date) {
+        this.first_release_date = first_release_date;
     }
 
     public int getId() {

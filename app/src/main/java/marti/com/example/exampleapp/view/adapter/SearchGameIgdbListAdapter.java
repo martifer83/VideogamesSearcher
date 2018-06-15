@@ -1,5 +1,6 @@
 package marti.com.example.exampleapp.view.adapter;
 
+import android.media.Rating;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.entity.GameIGDB;
+import marti.com.example.exampleapp.utils.UtilsDate;
 import marti.com.example.exampleapp.utils.UtilsImage;
 
 /**
@@ -26,7 +28,7 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
         implements StickyRecyclerHeadersAdapter<SearchGameIgdbListAdapter.HeaderViewHolder> {
 
     public class ViewHolder {
-        @Bind(R.id.cover)
+        @Bind(R.id.game_cover)
         protected ImageView cover;
 
         @Bind(R.id.name)
@@ -75,12 +77,18 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
     public void updateViewHolder(ViewHolder holder, GameIGDB game) {
         // UtilsEditText.setHighLightedText(holder.name, item.getName(), mTextHighLighted);
         holder.name.setText(game.getName());
-        holder.release_data.setText(Float.toString(game.getRelease_date()));
-        holder.rating.setText(Float.toString(game.getRating()));
+
+        String rel = game.getRelease_date();
+
+        //if(game.getRelease_date()!=0.0f) {
+            String releaseData = "Release data: " + UtilsDate.getDateFromTimeStamp(Long.parseLong(game.getRelease_date()));
+            holder.release_data.setText(releaseData);
+        //}
+        holder.rating.setText("Rating: " + Float.toString(Math.round(game.getRating())));
         // check if null
 
         if (game.getCover() != null){
-            UtilsImage.displayImage(holder.cover, game.getCover().getUrl(), R.drawable.dummy_event_im);
+            UtilsImage.displayImage(holder.cover, "http:"+game.getCover().getUrl(), R.drawable.dummy_event_im);
         } else {
             holder.cover.setImageResource(R.drawable.dummy_event_im);
         }

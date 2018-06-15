@@ -158,7 +158,7 @@ public class GameDetailsFragment extends BaseFragment<GameDetailsPresenter> impl
         // just for test
        // provisionalCover = "//res.cloudinary.com/igdb/image/upload/t_screenshot_med/qlapgaeuto9xntsonbz3.jpg";
 
-        UtilsImage.displayImage(mCover, provisionalCover, R.drawable.dummy_event_im);
+       // UtilsImage.displayImage(mCover, provisionalCover, R.drawable.dummy_event_im);
 
     }
 
