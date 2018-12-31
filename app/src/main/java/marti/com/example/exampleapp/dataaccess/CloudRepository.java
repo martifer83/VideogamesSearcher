@@ -1,11 +1,18 @@
 package marti.com.example.exampleapp.dataaccess;
 
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.RequestBody;
+
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import marti.com.example.exampleapp.R;
 import marti.com.example.exampleapp.dataaccess.rest.RestServices;
 import marti.com.example.exampleapp.entity.GameIGDB;
 import marti.com.example.exampleapp.entity.GameIgdbDetail;
+import retrofit.mime.TypedByteArray;
+import retrofit.mime.TypedInput;
 import rx.Observable;
 
 /**
@@ -24,7 +31,27 @@ public class CloudRepository {
 
         //marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key)
 
-        return restService.getService().getGamesByName(name,"name,popularity,rating,cover,first_release_date",50 ,"1",marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
+        String body;
+        body = "fields game.name, game.popularity, game.rating, game.cover, game.first_release_date; search &quot"+name+"&quot";//; where game != null";
+
+        ///body = "search \u0022Mario\u0022"; //; where game != null";
+
+
+        //rBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),body);
+       // String test = rBody.toString();
+
+
+
+        body = "fields game.name, game.popularity, game.rating, game.cover, game.first_release_date; search \""+ name +"\";";
+        // Es bona
+        //body = "fields *; where id = 1942;";
+
+        TypedInput requestBody = new TypedByteArray(
+                "application/json", body.getBytes(Charset.forName("UTF-8")));
+
+
+        //return restService.getService().getGamesByName(name,"name,popularity,rating,cover,first_release_date",50 ,"1",marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
+        return restService.getService().getGamesByName(marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json;charset=utf-8", requestBody);
 
     }
 
@@ -32,7 +59,19 @@ public class CloudRepository {
 
         //marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key)
 
-        return restService.getService().getGameById(id,"*", marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
+
+
+        // exemple:String body = "fields *; where id = 1942;";
+
+
+
+        String body;
+        body = "fields *; where id = " + id;
+
+        TypedInput requestBody = new TypedByteArray(
+                "application/json", body.getBytes(Charset.forName("UTF-8")));
+
+        return restService.getService().getGameById( marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json", requestBody);
 
     }
 

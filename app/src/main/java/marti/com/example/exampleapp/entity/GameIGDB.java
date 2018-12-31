@@ -16,6 +16,15 @@ public class GameIGDB implements Parcelable {
     private float popularity;
     private float rating;
     private String first_release_date;
+    private GameV3 game;
+
+    public GameV3 getGame() {
+        return game;
+    }
+
+    public void setGame(GameV3 game) {
+        this.game = game;
+    }
 
     public String getRelease_date() {
         return first_release_date;

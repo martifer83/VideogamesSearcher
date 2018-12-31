@@ -1,5 +1,7 @@
 package marti.com.example.exampleapp.dataaccess;
 
+import com.squareup.okhttp.RequestBody;
+
 import java.util.ArrayList;
 
 import marti.com.example.exampleapp.entity.GameIGDB;
@@ -7,10 +9,14 @@ import marti.com.example.exampleapp.entity.GameIgdbDetail;
 import marti.com.example.exampleapp.entity.GameResponse;
 import marti.com.example.exampleapp.entity.SongResponse;
 import retrofit.Callback;
+import retrofit.http.Body;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.POST;
 import retrofit.http.Path;
 import retrofit.http.Query;
+import retrofit.mime.TypedInput;
 import rx.Observable;
 
 /**
@@ -47,8 +53,8 @@ public interface AppRestInterface {
             Callback<ArrayList<GameIGDB>> callback
     );*/
 
-    // RX
-    @GET("/games/")
+    // RX API V2
+    /*@GET("/games/")
     Observable<ArrayList<GameIGDB>> getGamesByName(
             @Query("search") String nom,
             @Query("fields") String fields,
@@ -57,11 +63,18 @@ public interface AppRestInterface {
 
             @Header("user-key") String userkey,
             @Header("Accept") String accept
+    );*/
+
+    // Migrate to V3
+
+
+    @POST("/search/")
+    Observable<ArrayList<GameIGDB>> getGamesByName(
+            @Header("user-key") String userkey,
+            @Header("Accept") String accept,
+            @Body TypedInput body
     );
-
-
-
-
+///
 
    /* @GET("/games/search") ///games/?search=Halo
     void getGamesByName(
@@ -69,8 +82,6 @@ public interface AppRestInterface {
             @Query("q") String q,
             Callback<GameIgdbResponse> callback
     );*/
-
-
 
    /*
     Get all information from a specific game
@@ -89,14 +100,12 @@ public interface AppRestInterface {
     //https://api-endpoint.igdb.com/games/1942?fields=name&filter[version_parent][not_exists]=1
     //https://api-endpoint.igdb.com/games/1942?fields=*
 
-    @GET("/games/{id}")
+    @POST("/games/")
     Observable<ArrayList<GameIgdbDetail>> getGameById(
-            @Path("id") String id,
-            @Query("fields") String fields,
             @Header("user-key") String userkey,
-            @Header("Accept") String accept
+            @Header("Accept") String accept,
+            @Body TypedInput body
     );
-
 
    /*@GET("/games/{id}")
     void getGamesById(
@@ -104,6 +113,5 @@ public interface AppRestInterface {
             @Path("id") String id,
             Callback<GameIgdbResponse> callback
     );*/
-
 
 }
