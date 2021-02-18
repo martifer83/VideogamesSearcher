@@ -12,26 +12,14 @@ public class GameIGDB implements Parcelable {
 
     private int id;
     private String name;
-    private Cover cover;
-    private float popularity;
-    private float rating;
-    private String first_release_date;
-    private GameV3 game;
+    private String published_at;
 
-    public GameV3 getGame() {
-        return game;
+    public String get_published_at() {
+        return published_at;
     }
 
-    public void setGame(GameV3 game) {
-        this.game = game;
-    }
-
-    public String getRelease_date() {
-        return first_release_date;
-    }
-
-    public void setRelease_date(String first_release_date) {
-        this.first_release_date = first_release_date;
+    public void set_published_at(String published_at) {
+        this.published_at = published_at;
     }
 
     public int getId() {
@@ -42,29 +30,6 @@ public class GameIGDB implements Parcelable {
         return name;
     }
 
-    public float getPopularity() {
-        return popularity;
-    }
-
-    public Cover getCover() {
-        return cover;
-    }
-
-    public void setCover(Cover cover) {
-        this.cover = cover;
-    }
-
-    public void setPopularity(float popularity) {
-        this.popularity = popularity;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
 
     @Override
     public int describeContents() {
@@ -75,9 +40,6 @@ public class GameIGDB implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeString(this.name);
-        dest.writeFloat(this.popularity);
-        dest.writeFloat(this.rating);
-        dest.writeTypedObject(this.cover,0);
     }
 
     public GameIGDB() {
@@ -86,9 +48,6 @@ public class GameIGDB implements Parcelable {
     protected GameIGDB(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
-        this.popularity = in.readFloat();
-        this.rating = in.readFloat();
-        this.cover =in.readParcelable(Cover.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<Game> CREATOR = new Parcelable.Creator<Game>() {

@@ -32,7 +32,7 @@ public class CloudRepository {
         //marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key)
 
         String body;
-        body = "fields game.name, game.popularity, game.rating, game.cover, game.first_release_date; search &quot"+name+"&quot";//; where game != null";
+        //body = "fields game.name, game.popularity, game.rating, game.cover, game.first_release_date; search &quot"+name+"&quot";//; where game != null";
 
         ///body = "search \u0022Mario\u0022"; //; where game != null";
 
@@ -41,17 +41,21 @@ public class CloudRepository {
        // String test = rBody.toString();
 
 
+ /// exemple body v4 fields name; search "Europa Universalis";
 
-        body = "fields game.name, game.popularity, game.rating, game.cover, game.first_release_date; search \""+ name +"\";";
-        // Es bona
-        //body = "fields *; where id = 1942;";
+        body = "fields *; search \""+ name +"\";";
+
+        // popularity no hi es
+        //body = "fields game.name, game.popularity, game.rating, game.cover, game.first_release_date; search \""+ name +"\";";
+
+
 
         TypedInput requestBody = new TypedByteArray(
                 "application/json", body.getBytes(Charset.forName("UTF-8")));
 
 
         //return restService.getService().getGamesByName(name,"name,popularity,rating,cover,first_release_date",50 ,"1",marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json");
-        return restService.getService().getGamesByName(marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.igdb_api_key), "application/json;charset=utf-8", requestBody);
+        return restService.getService().getGamesByName(marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.token), marti.com.example.exampleapp.Application.getInstance().getApplicationContext().getString(R.string.client_id), requestBody);
 
     }
 

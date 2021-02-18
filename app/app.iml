@@ -119,6 +119,5 @@
     <orderEntry type="library" name="Gradle: com.timehop.stickyheadersrecyclerview:library:0.4.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex:rxandroid:1.2.1@aar" level="project" />
     <orderEntry type="module" module-name="imageloader" />
-    <orderEntry type="module" module-name="pinning" />
   </component>
 </module>

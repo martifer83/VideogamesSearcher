@@ -1,1 +1,1 @@
-include ':app', ':pinning', ':imageloader'
+include ':app', ':imageloader'

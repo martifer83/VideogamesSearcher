@@ -76,20 +76,12 @@ public class SearchGameIgdbListAdapter extends BaseAdapter<GameIGDB, SearchGameI
     @Override
     public void updateViewHolder(ViewHolder holder, GameIGDB game) {
         // UtilsEditText.setHighLightedText(holder.name, item.getName(), mTextHighLighted);
-        holder.name.setText(game.getGame().getName());
+        holder.name.setText(game.getName());
 
 
-        //if(game.getRelease_date()!= null) {
-            String releaseData = "Release data: " + UtilsDate.getDateFromTimeStamp(Long.parseLong(game.getGame().getFirst_release_date()));
+        if(game.get_published_at()!= null) {
+            String releaseData = "Release data: " + UtilsDate.getDateFromTimeStamp(Long.parseLong(game.get_published_at()));
             holder.release_data.setText(releaseData);
-        //}
-        holder.rating.setText("Rating: " + Float.toString(Math.round(game.getGame().getRating())));
-        // check if null
-
-        if (game.getCover() != null){
-            UtilsImage.displayImage(holder.cover, "http:"+game.getCover().getUrl(), R.drawable.dummy_event_im);
-        } else {
-            holder.cover.setImageResource(R.drawable.dummy_event_im);
         }
     }
 

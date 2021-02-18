@@ -101,5 +101,4 @@ dependencies {
 
 
     implementation project(':imageloader')
-    implementation project(':pinning')
 }

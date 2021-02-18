@@ -124,16 +124,7 @@ public class SearchGamesIgdbPageFragment extends BaseFragment<SearchGamePagePres
         // roll number
         public int compare(GameIGDB a, GameIGDB b)
         {
-
-            int retval = Float.compare(a.getPopularity(), b.getPopularity());
-
-            if( retval > 0 ){
-                return -1;
-            }else if(retval < 0){
-                return 1;
-            }else{
-                return 0;
-            }
+            return 0;
         }
     }
 

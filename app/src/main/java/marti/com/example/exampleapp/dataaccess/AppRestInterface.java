@@ -65,13 +65,13 @@ public interface AppRestInterface {
             @Header("Accept") String accept
     );*/
 
-    // Migrate to V3
+    // Migrate to V4
 
 
     @POST("/search/")
     Observable<ArrayList<GameIGDB>> getGamesByName(
-            @Header("user-key") String userkey,
-            @Header("Accept") String accept,
+            @Header("Authorization") String auth,
+            @Header("Client-ID") String client_id,
             @Body TypedInput body
     );
 ///
