@@ -23,10 +23,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     provided 'com.android.support:support-annotations:22.2.0'
 
-    /**
-     * Needed for secure connections.
-     */
-    compile project (':pinning')
 
     /*
      * Powerful and flexible library for loading, caching and displaying images on Android.

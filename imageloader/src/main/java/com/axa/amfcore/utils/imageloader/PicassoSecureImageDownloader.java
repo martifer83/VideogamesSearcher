@@ -12,8 +12,6 @@ package com.axa.amfcore.utils.imageloader;
 
 import android.content.Context;
 
-import com.axa.amfcore.utils.pinning.OkHttpPinningClient;
-import com.axa.amfcore.utils.pinning.PinningFactory;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.OkHttpDownloader;
@@ -40,9 +38,7 @@ class PicassoSecureImageDownloader extends OkHttpDownloader { // Must have 'Pack
         CLIENT.setReadTimeout(Config.READ_TIMEOUT, TimeUnit.MILLISECONDS);
 
         // Setup pinning.
-        if(pinned) {
-            PinningFactory.setPinnedClient(context, new OkHttpPinningClient(context, CLIENT));
-        }
+
 
         // Adds interceptor
         CLIENT.interceptors().add(new Interceptor() {

@@ -13,8 +13,6 @@ package com.axa.amfcore.utils.imageloader;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.axa.amfcore.utils.pinning.OkHttpPinningClient;
-import com.axa.amfcore.utils.pinning.PinningFactory;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -60,10 +58,7 @@ class UILSecureImageDownloader extends BaseImageDownloader { // Must have 'Packa
         // Default ok http CLIENT
         CLIENT.setConnectTimeout(Config.CONN_TIMEOUT, TimeUnit.MILLISECONDS);
         CLIENT.setReadTimeout(Config.READ_TIMEOUT, TimeUnit.MILLISECONDS);
-        // Setup pinning.
-        if(pinned) {
-            PinningFactory.setPinnedClient(context, new OkHttpPinningClient(context, CLIENT));
-        }
+
     }
 
     @Override
